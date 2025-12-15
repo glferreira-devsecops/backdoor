@@ -1,5 +1,6 @@
 "use client";
 
+import { BioModal } from "@/components/chaos/BioModal";
 import { CRTOverlay } from "@/components/chaos/CRTOverlay";
 import { ChaosTooltip } from "@/components/chaos/ChaosTooltip";
 import { CustomCursor } from "@/components/chaos/CustomCursor";
@@ -27,19 +28,24 @@ interface WindowState {
   rotation: number;
 }
 
+// Host interface matching content.ts exactly
 interface Host {
-  id: string | number;
-  image: string;
+  id: string;
   name: string;
-  chaosLevel: number;
   role: string;
+  image: string;
+  chaosLevel: number;
   desc: string;
   traits: string[];
+  diagnosis?: string;
+  stats?: { [key: string]: string | number | undefined };
   cancelPercentage?: number;
 }
 
 export default function Home() {
   const [osMode, setOsMode] = useState<"normal" | "bsod">("normal");
+  const [selectedProfile, setSelectedProfile] = useState<Host | null>(null);
+
   const [windows, setWindows] = useState<WindowState[]>([
     { id: 1, title: "ERRO 404: PAUTA", text: "O sistema não encontrou lógica neste podcast.", x: 20, y: 40, visible: true, rotation: -2 }, // Top Left
     // Moved away from center (Illustration Face)
@@ -271,11 +277,12 @@ export default function Home() {
           Os Culpados
         </h2>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {content.profiles.partners.map((host: Host, index: number) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {(content.profiles.partners as Host[]).map((host, index) => (
             <motion.div
               layout
               key={host.id}
+              onClick={() => setSelectedProfile(host)}
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{
@@ -423,6 +430,8 @@ export default function Home() {
         </p>
       </footer>
 
+      {/* MODALS */}
+      <BioModal profile={selectedProfile} onClose={() => setSelectedProfile(null)} />
     </main>
   );
 }
