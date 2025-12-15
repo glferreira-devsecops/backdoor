@@ -201,34 +201,48 @@ export default function Home() {
       <TopicGenerator />
 
       {/* ECOLOGIA DA PRODUÇÃO - HORIZONTAL WITH DRAG */}
-      <section className="py-20 overflow-hidden bg-white border-y-4 border-black">
-        <div className="container px-4 mb-8">
-          <h2 className="text-5xl font-black uppercase flex items-center gap-4">
-            <Zap className="fill-yellow-400 text-black h-12 w-12" />
+      <section className="py-24 overflow-hidden bg-white border-y-8 border-black relative">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-10 pointer-events-none"></div>
+        <div className="container px-4 mb-12 relative z-10">
+          <h2 className="text-5xl md:text-7xl font-black uppercase flex items-center gap-4 tracking-tighter">
+            <Zap className="fill-yellow-400 text-black h-12 w-12 md:h-16 md:w-16 animate-pulse" />
             Ecologia da Várzea
           </h2>
-          <p className="font-bold animate-pulse">ARRASTE PARA O LADO &rarr;</p>
+          <p className="font-bold font-mono mt-4 bg-black text-white inline-block px-4 py-1 skew-x-[-10deg]">
+            BASTIDORES DO CAOS &rarr; ARRASTE COM ÓDIO
+          </p>
         </div>
 
         <motion.div
-          className="flex gap-8 px-8 cursor-grab active:cursor-grabbing w-full"
+          className="flex gap-8 px-8 cursor-grab active:cursor-grabbing w-fit"
           drag="x"
-          dragConstraints={{ right: 0, left: -2000 }}
+          dragConstraints={{ right: 0, left: -1000 }} // Adjust based on content width
+          dragElastic={0.2}
+          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
         >
           {/* TEAM CARDS */}
           {content.production.team.map((member, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              className="w-80 min-w-[320px] bg-gray-100 border-4 border-black p-6 shadow-[8px_8px_0px_#000] flex flex-col justify-between"
+              whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 2 : -2, skewX: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-80 min-w-[340px] bg-gray-100 border-4 border-black p-8 shadow-[12px_12px_0px_#000] flex flex-col justify-between relative overflow-hidden group"
             >
+              {/* NOISE OVERLAY */}
+              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+
               <div>
-                <div className="bg-black text-white inline-block px-2 py-1 font-bold text-xs mb-2">FICHA #{i + 1}</div>
-                <h3 className="text-2xl font-black uppercase mb-1">{member.name}</h3>
-                <h4 className="text-red-600 font-bold uppercase text-sm mb-4 border-b-2 border-black pb-2">{member.role}</h4>
-                <p className="font-serif leading-tight">{member.desc}</p>
+                <div className="bg-black text-[#00ff00] border border-[#00ff00] inline-block px-3 py-1 font-mono font-bold text-xs mb-4 shadow-[2px_2px_0px_#00ff00]">
+                  FICHA TÉCNICA #{i + 1}
+                </div>
+                <h3 className="text-3xl font-black uppercase mb-1 leading-none tracking-tight">{member.name}</h3>
+                <h4 className="text-red-600 font-black uppercase text-sm mb-6 border-b-4 border-black pb-2">{member.role}</h4>
+                <p className="font-serif leading-tight text-lg italic border-l-4 border-gray-300 pl-4">{member.desc}</p>
               </div>
-              <div className="mt-4 text-xs font-mono text-gray-400">STATUS: ATIVO</div>
+              <div className="mt-6 flex justify-between items-center border-t-2 border-dashed border-gray-400 pt-4">
+                <span className="text-xs font-mono text-gray-500 uppercase">STATUS: SOBREVIVENDO</span>
+                <AlertTriangle size={16} className="text-yellow-500" />
+              </div>
             </motion.div>
           ))}
 
@@ -236,12 +250,16 @@ export default function Home() {
           {content.production.abuse.map((abuse, i) => (
             <motion.div
               key={`abuse-${i}`}
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              className="w-96 min-w-[380px] bg-red-100 border-4 border-red-600 p-6 shadow-[8px_8px_0px_#ff0000] relative"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              className="w-96 min-w-[400px] bg-red-600 text-white border-4 border-black p-8 shadow-[12px_12px_0px_#000] relative group"
             >
-              <AlertTriangle className="absolute top-2 right-2 text-red-600 h-8 w-8" />
-              <h3 className="text-xl font-black uppercase mb-4 pr-8">{abuse.title}</h3>
-              <p className="font-mono text-sm">{abuse.desc}</p>
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10 mix-blend-multiply"></div>
+              <AlertTriangle className="absolute top-4 right-4 text-black h-12 w-12 animate-pulse" />
+              <div className="bg-white text-black inline-block px-2 font-black uppercase text-xs mb-4 transform -rotate-2">
+                ALERTA DE RH
+              </div>
+              <h3 className="text-2xl font-black uppercase mb-4 pr-12 leading-tight">{abuse.title}</h3>
+              <p className="font-mono text-sm leading-relaxed opacity-90">{abuse.desc}</p>
             </motion.div>
           ))}
         </motion.div>
