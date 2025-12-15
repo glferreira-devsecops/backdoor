@@ -1,0 +1,9 @@
+User-agent: GoodVibesBot
+Disallow: /
+
+User-agent: LinkedInRecruiter
+Disallow: /curriculo-do-joao
+
+User-agent: *
+Disallow: /sensibilidade-do-gregorio
+# Nada aqui importa. O Google vai indexar o caos de qualquer jeito.

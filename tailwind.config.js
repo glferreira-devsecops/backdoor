@@ -1,0 +1,39 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/data/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'chaos-red': '#ff0000',
+        'chaos-green': '#00ff00',
+        'chaos-black': '#000000',
+        'chaos-white': '#ffffff',
+        'bsod-blue': '#0000AA',
+      },
+      fontFamily: {
+        mono: ['Courier New', 'Courier', 'monospace'],
+      },
+      animation: {
+        'glitch': 'glitch 1s linear infinite',
+        'marquee': 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        glitch: {
+          '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+          '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+          '62%': { transform: 'translate(0,0) skew(5deg)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
+      }
+    },
+  },
+  plugins: [],
+}
