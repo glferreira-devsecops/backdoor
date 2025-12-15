@@ -28,7 +28,15 @@ export function ExcuseScroll() {
             >
                 {/* Render content TWICE for seamless loop */}
                 {[...EXCUSES, ...EXCUSES].map((excuse, i) => (
-                    <div key={i} className="py-8 whitespace-nowrap text-xs md:text-sm font-black font-mono uppercase tracking-widest hover:text-[#00ff00] cursor-help transition-colors drop-shadow-[2px_2px_0px_rgba(255,0,0,0.5)]" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed', transform: 'rotate(180deg)' }}>
+                    <div
+                        key={i}
+                        className="py-12 whitespace-nowrap text-xs md:text-sm font-black font-mono uppercase tracking-widest hover:text-[#00ff00] cursor-help transition-colors drop-shadow-[2px_2px_0px_rgba(255,0,0,0.5)]"
+                        style={{
+                            writingMode: 'vertical-rl',
+                            textOrientation: 'mixed',
+                            transform: 'rotate(180deg)' // Rotates 180 to read bottom-up (like a book spine)
+                        }}
+                    >
                         {excuse} <span className="text-red-500 my-4">●</span>
                     </div>
                 ))}

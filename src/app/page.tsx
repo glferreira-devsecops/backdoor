@@ -14,7 +14,7 @@ import { content } from "@/data/content";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertTriangle, Minus, Siren, Volume2, X, Zap } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface WindowState {
   id: number;
@@ -40,9 +40,10 @@ interface Host {
 export default function Home() {
   const [osMode, setOsMode] = useState<"normal" | "bsod">("normal");
   const [windows, setWindows] = useState<WindowState[]>([
-    { id: 1, title: "ERRO 404: PAUTA", text: "O sistema não encontrou lógica neste podcast.", x: 20, y: 80, visible: true, rotation: -2 },
-    { id: 2, title: "SOLICITAÇÃO DE CUPOM", text: "Cupom CHARME expirado em 2022.", x: -40, y: 250, visible: true, rotation: 3 },
-    { id: 3, title: "ALERTA DE CANCELAMENTO", text: "Nível de risco: 87%. Aguarde...", x: 60, y: 400, visible: true, rotation: -1 }
+    { id: 1, title: "ERRO 404: PAUTA", text: "O sistema não encontrou lógica neste podcast.", x: 20, y: 40, visible: true, rotation: -2 }, // Top Left
+    // Moved away from center (Illustration Face)
+    { id: 2, title: "ALERTA DE CANCELAMENTO", text: "Nível de risco: 87%. Aguarde...", x: -200, y: 300, visible: true, rotation: 3 }, // Bottom Left
+    { id: 3, title: "SOLICITAÇÃO DE CUPOM", text: "Cupom CHARME expirado em 2022.", x: 250, y: 100, visible: true, rotation: -1 } // Top Right
   ]);
 
   const closeWindow = (id: number) => {
