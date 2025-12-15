@@ -51,6 +51,12 @@ export default function Home() {
 
   // Runaway Button Logic
   const [btnPos, setBtnPos] = useState({ x: 0, y: 0 });
+  // FORCE SCROLL TO TOP ON LOAD
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }, []);
+
   const runAway = () => {
     const x = (Math.random() - 0.5) * 300;
     const y = (Math.random() - 0.5) * 300;

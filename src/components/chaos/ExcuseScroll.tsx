@@ -23,7 +23,7 @@ export function ExcuseScroll() {
         <div className="fixed left-0 top-0 h-screen w-16 bg-black text-white hidden md:flex flex-col overflow-hidden border-r-4 border-red-600 z-40 select-none">
             <motion.div
                 animate={{ y: ["0%", "-50%"] }}
-                transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
                 className="w-full flex flex-col items-center pt-4"
             >
                 {/* Render content TWICE for seamless loop */}
