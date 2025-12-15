@@ -6,30 +6,48 @@ import { useState } from "react";
 
 const QUESTIONS = [
     {
-        q: "Qual sua relação com pés?",
+        q: "Qual é a sua relação com o conceito de 'Repouso'?",
         a: [
-            { text: "Tenho memória fotográfica para joanetes.", score: "joao" },
-            { text: "Uso para andar, apenas.", score: "normal" },
-            { text: "Meus pés são garras góticas.", score: "gargula" }
+            { text: "Durmo 14h por dia e protesto dormindo.", score: "greg" },
+            { text: "Repouso é para quem não tem milhas para gastar.", score: "porchat" },
+            { text: "Fico olhando no espelho até cansar de ser lindo.", score: "joao" }
         ]
     },
     {
-        q: "Como você lida com prazos?",
+        q: "Se o mundo acabasse hoje, o que você faria?",
         a: [
-            { text: "Durmo e culpo a filha.", score: "greg" },
-            { text: "Entrego, mas odeio.", score: "estagiario" },
-            { text: "Grito e monetizo o pânico.", score: "porchat" }
+            { text: "Postaria uma foto sem camisa com legenda poética.", score: "joao" },
+            { text: "Estaria na Islândia fingindo que não é comigo.", score: "porchat" },
+            { text: "Escreveria uma crônica culpando o neoliberalismo.", score: "greg" }
         ]
     },
     {
-        q: "O que você faria se fosse 'imbeijável'?",
+        q: "Qual sua maior habilidade inútil?",
         a: [
-            { text: "Terapia por 30 anos.", score: "joao" },
-            { text: "Escreveria uma coluna na Folha.", score: "greg" },
-            { text: "Viajaria para a Islândia.", score: "porchat" }
+            { text: "Decorar o PIB de países que não existem.", score: "porchat" },
+            { text: "Ter opinião sobre tudo sem ler nada (brincadeira... ou não).", score: "greg" },
+            { text: "Harmonizar vinhos com whey protein.", score: "joao" }
+        ]
+    },
+    {
+        q: "Como você lida com críticas na internet?",
+        a: [
+            { text: "Block é vida, block é amor.", score: "tabet" },
+            { text: "Faço um vídeo gritando com uma atendente imaginária.", score: "evelyn" },
+            { text: "Choro no banho, mas em mansão.", score: "porchat" }
+        ]
+    },
+    {
+        q: "Para você, o que é um 'look casual'?",
+        a: [
+            { text: "Terno de linho e mocassim sem meia (no inverno).", score: "joao" },
+            { text: "Camiseta de banda que eu não ouço e cabelo bagunçado.", score: "greg" },
+            { text: "Roupa de safari, caso precise fugir do país.", score: "porchat" }
         ]
     }
 ];
+
+
 
 export function VanityQuiz() {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,10 +60,11 @@ export function VanityQuiz() {
         } else {
             // Random chaotic result because logic is overrated
             const results = [
-                "VOCÊ É: O ESTAGIÁRIO (Ninguém liga).",
-                "VOCÊ É: JOÃO VICENTE (Vá para a terapia).",
-                "VOCÊ É: GREGÓRIO (Vá dormir).",
-                "VOCÊ É: PORCHAT (Vá viajar)."
+                "RESULTADO: VOCÊ É O JOÃO VICENTE! 💅\n(Diagnóstico: Excesso de auto-estima e fotos sem camisa. Procure um espelho.)",
+                "RESULTADO: VOCÊ É O GREGÓRIO! 😴\n(Diagnóstico: Narcolepsia militante. Você dormiu durante esse quiz.)",
+                "RESULTADO: VOCÊ É O FABIO PORCHAT! ✈️\n(Diagnóstico: Workaholic terminal. Você está lendo isso em um aeroporto?)",
+                "RESULTADO: VOCÊ É O TABET! 🤨\n(Diagnóstico: Ceticismo crônico. Você odiou esse quiz e vai reclamar.)",
+                "RESULTADO: VOCÊ É O ESTAGIÁRIO! ☠️\n(Diagnóstico: Indigente. Ninguém se importa com seu resultado.)"
             ];
             setResult(results[Math.floor(Math.random() * results.length)]);
         }
