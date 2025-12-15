@@ -1,3 +1,4 @@
+import { ConsoleRoast } from '@/components/chaos/ConsoleRoast'
 import { NihilistCookies } from '@/components/chaos/NihilistCookies'
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
@@ -32,18 +33,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-black text-white selection:bg-[#00ff00] selection:text-black overflow-x-hidden`}>
         {children}
         <NihilistCookies />
-
-        {/* DEVELOPER EASTER EGG */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              console.log("%c PARE DE OLHAR O CONSOLE ", "background: red; color: white; font-size: 20px; font-weight: bold; padding: 10px;");
-              console.log("%c Se você está aqui, você deveria estar trabalhando. ", "color: #00ff00; font-family: monospace;");
-              console.log("Status do Estagiário: Atrasado.");
-              console.log("Risco de Processo: 99.9%.");
-            `,
-          }}
-        />
+        <ConsoleRoast />
       </body>
     </html>
   );

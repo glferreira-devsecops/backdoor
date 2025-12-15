@@ -146,8 +146,8 @@ export default function Home() {
               <div className="absolute inset-0 bg-red-600 mix-blend-multiply opacity-0 group-hover:opacity-20 transition-opacity pointer-events-none"></div>
             </div>
 
-            <h1 className="text-[12vw] md:text-[8vw] leading-[0.8] font-black uppercase text-center mt-6 tracking-tighter mix-blend-difference text-black">
-              ANATOMIA DO <span className="italic text-transparent bg-clip-text bg-gradient-to-t from-black to-gray-500">CAOS</span>
+            <h1 className="text-[12vw] md:text-[8vw] leading-[0.8] font-black uppercase text-center mt-6 tracking-tighter mix-blend-difference text-black break-words">
+              ANATOMIA DO <span className="italic text-transparent bg-clip-text bg-gradient-to-t from-black to-gray-500 block md:inline">CAOS</span>
             </h1>
           </motion.div>
 
