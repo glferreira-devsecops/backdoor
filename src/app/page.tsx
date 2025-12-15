@@ -1,6 +1,7 @@
 "use client";
 
 import { CRTOverlay } from "@/components/chaos/CRTOverlay";
+import { ChaosTooltip } from "@/components/chaos/ChaosTooltip";
 import { CustomCursor } from "@/components/chaos/CustomCursor";
 import { ExcuseScroll } from "@/components/chaos/ExcuseScroll";
 import { FloatingWindow } from "@/components/chaos/FloatingWindow";
@@ -172,6 +173,8 @@ export default function Home() {
               ))}
             </motion.div>
 
+
+
             <motion.div
               whileHover={{ scale: 1.02, rotate: 1 }}
               className="bg-[#ffff00] border-4 border-black p-6 text-black shadow-[12px_12px_0px_#000] rotate-2"
@@ -179,13 +182,15 @@ export default function Home() {
               <div className="font-black text-6xl mb-2">ABSOLUTO</div>
               <div className="font-black text-6xl mb-4 italic">NADA</div>
               <div className="space-y-4">
-                <motion.button
-                  animate={{ x: btnPos.x, y: btnPos.y }}
-                  onHoverStart={runAway}
-                  className="w-full bg-black text-white font-bold py-3 uppercase hover:bg-red-600 transition-colors flex items-center justify-center gap-2 group cursor-pointer relative z-50"
-                >
-                  <Volume2 className="group-hover:animate-ping" /> Ouvir Episódio (Mentira)
-                </motion.button>
+                <ChaosTooltip content="NÃO CLIQUE AQUI (SÉRIO)" variant="danger">
+                  <motion.button
+                    animate={{ x: btnPos.x, y: btnPos.y }}
+                    onHoverStart={runAway}
+                    className="w-full bg-black text-white font-bold py-3 uppercase hover:bg-red-600 transition-colors flex items-center justify-center gap-2 group cursor-pointer relative z-50"
+                  >
+                    <Volume2 className="group-hover:animate-ping" /> Ouvir Episódio (Mentira)
+                  </motion.button>
+                </ChaosTooltip>
               </div>
             </motion.div>
           </div>
