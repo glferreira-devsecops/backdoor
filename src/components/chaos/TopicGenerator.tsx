@@ -5,22 +5,73 @@ import { AlertTriangle, Shuffle, Sparkles, Zap } from "lucide-react";
 import { useState } from "react";
 
 const TOPICS = [
-    "A morte da TV Aberta", "Gente que anda devagar na calçada", "A ética de comer uva no mercado",
-    "Influenciadores de LinkedIn", "O cheiro de hospital", "Medo de aranha vs. Medo de boleto",
-    "Fofoca de gente morta", "A volta da pochete", "Chuca: Tabu ou Higiene?", "Podcast de True Crime",
-    "A gourmetização do pão na chapa", "Traumas de infância com palhaços", "A solidão do goleiro",
-    "Reforma ortográfica: Pra quê?", "O conceito de 'Cringe'", "Famosos que parecem que cheiram mal",
-    "Brigadeiro de whey", "Coach quântico", "A obsessão por Pêra-Uva", "Será que o Porchat grita por dentro?",
-    "Por que todo calvo usa boné?", "O mistério da meia que some na máquina", "Adulto usando Crocs em público",
-    "Namoro vs. CLT: Qual humilha mais?", "A vida sexual dos pandas", "Barulho de moto: compensação de algo?",
-    "A ditadura do 'Positividade Tóxica'", "Veganos que comem bacon escondido", "Áudio de 5 minutos no WhatsApp",
-    "Pessoas que aplaudem o pôr do sol", "Aprender mandarim por pressão social", "Crossfit: Seita ou Esporte?",
-    "Onde os pombos morrem?", "Medo irracional de ventilador de teto cair", "Quem inventou a reunião que poderia ser e-mail?",
-    "A farsa do 'trabalhe enquanto eles dormem'", "Nudes não solicitados: Crime ou Castigo?", "O submundo dos grupos de condomínio",
-    "Sapatênis: O calçado da derrota", "Cerveja artesanal com gosto de sabão", "Astrologia para cachorros",
-    "O primo rico que vende Hinode", "Férias com a família: Lazer ou Penitência?", "A gourmetização do podre",
-    "Séries que ninguém viu mas todo mundo finge que viu", "O trauma do EAD", "Pessoas que falam 'gratiluz'",
-    "O preço do azeite", "Fila de banco como experiência antropológica", "A vida secreta dos motoristas de Uber"
+    // DILEMAS MODERNOS
+    "A morte da TV Aberta",
+    "Gente que anda devagar na calçada",
+    "A ética de comer uva no mercado",
+    "Influenciadores de LinkedIn",
+    "O cheiro de hospital",
+    "Medo de aranha vs. Medo de boleto",
+    "Fofoca de gente morta (Chico Xavier)",
+    "A volta da pochete: Estilo ou Desistência?",
+    "Chuca: Tabu ou Higiene Básica?",
+    "Podcast de True Crime para dormir",
+    "A gourmetização do pão na chapa",
+    "Traumas de infância com palhaços de festa",
+    "A solidão do goleiro de society",
+    "Reforma ortográfica: Pra quê 'ideia' sem acento?",
+    "O conceito de 'Cringe' para quem tem 30+",
+    "Famosos que parecem que cheiram a queijo",
+    "Brigadeiro de whey: Crime Gastronômico",
+    "Coach quântico que reprograma DNA",
+    "A obsessão branca por Pêra-Uva",
+    "Será que o Porchat grita por dentro?",
+    "Por que todo calvo usa boné da New Era?",
+    "O mistério da meia que some na máquina",
+    "Adulto usando Crocs em reunião de board",
+    "Namoro vs. CLT: Qual humilha mais?",
+    "A vida sexual triste dos pandas",
+    "Barulho de moto: compensação fálica?",
+    "A ditadura do 'Good Vibes Only'",
+    "Veganos que comem bacon escondido no hotel",
+    "Áudio de 5 minutos no WhatsApp: Pode matar?",
+    "Pessoas que aplaudem o pôr do sol no Arpoador",
+    "Aprender mandarim por pressão do pai rico",
+    "Crossfit: Seita, Esporte ou Lesão?",
+    "Onde os pombos morrem? (Teoria da Conspiração)",
+    "Medo irracional de ventilador de teto cair",
+    "Quem inventou a reunião que poderia ser e-mail?",
+    "A farsa do 'trabalhe enquanto eles dormem'",
+    "Nudes não solicitados: Crime ou Castigo?",
+    "O submundo dos grupos de condomínio",
+    "Sapatênis: O calçado da derrota masculina",
+    "Cerveja artesanal com gosto de sabão e ipa",
+    "Astrologia para cachorros (Meu pug é de leão)",
+    "O primo rico que vende Hinode",
+    "Férias com a família: Lazer ou Penitência?",
+    "A gourmetização do podre (Vinho Natural)",
+    "Séries que ninguém viu mas todo mundo finge que viu",
+    "O trauma do EAD e a câmera fechada",
+    "Pessoas que falam 'gratiluz' não ironicamente",
+    "O preço do azeite: O novo Bitcoin",
+    "Fila de banco como experiência antropológica",
+    "A vida secreta dos motoristas de Uber",
+
+    // PORTA DOS FUNDOS SPECIFIC
+    "O Joanete do João Vicente: Patrimônio Histórico?",
+    "Gregório dormindo em velório de parente distante",
+    "A risada da Evelyn Castro como arma sônica",
+    "Porchat comprando países pequenos no débito",
+    "O Estagiário que virou CEO por engano",
+    "Rafael Portugal: Humano ou Muppet?",
+    "Fazer 'publi' de jogo do tigrinho é ético?",
+    "O Fantasma do Natal Passado (que votou errado)",
+    "Peçanha e a brutalidade policial recreativa",
+    "Dona Helena e a sexualidade na terceira idade",
+    "Jesus voltândo e sendo cancelado no Twitter",
+    "Moises abrindo o Mar Vermelho pra passar jet ski",
+    "Deus é brasileiro e está de ressaca",
+    "O Diabo pedindo demissão por burnout"
 ];
 
 export function TopicGenerator() {
@@ -31,11 +82,18 @@ export function TopicGenerator() {
         setIsSpinning(true);
         let count = 0;
         const interval = setInterval(() => {
+            // Simple random shuffle for visual effect
             setTopic(TOPICS[Math.floor(Math.random() * TOPICS.length)]);
             count++;
             if (count > 25) {
                 clearInterval(interval);
                 setIsSpinning(false);
+                // Final selection: Ensure it's not the same as before (simple check)
+                let newTopic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+                while (newTopic === topic) {
+                    newTopic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+                }
+                setTopic(newTopic);
             }
         }, 40);
     };
