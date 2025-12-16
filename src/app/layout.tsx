@@ -10,6 +10,11 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 export const metadata: Metadata = {
   title: 'Dossiê Não Importa | O Guia da Irrelevância',
   description: 'Um mapa psiquiátrico de milionários com TDAH. O site que o João Vicente não quer que você veja.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: '⚠️ CUIDADO: Dossiê Vazado',
     description: 'Contém: Fotos de pés, diagnósticos de rinite e o salário do estagiário.',
