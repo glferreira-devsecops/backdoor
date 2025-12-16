@@ -88,7 +88,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen font-mono text-black bg-[#C0C0C0] selection:bg-red-600 selection:text-white cursor-none overflow-x-hidden md:pl-12">
+    <main className="min-h-screen font-mono text-black bg-[#C0C0C0] selection:bg-red-600 selection:text-white overflow-x-hidden md:pl-12 md:cursor-none">
       <CustomCursor />
       <CRTOverlay />
       <Processometer />
@@ -297,6 +297,10 @@ export default function Home() {
                 layout
                 key={host.id}
                 onClick={() => setSelectedProfile(host)}
+                onTouchEnd={(e) => { e.stopPropagation(); setSelectedProfile(host); }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Ver dossiê de ${host.name}`}
                 initial={{ opacity: 0, y: 100, rotate: index === 1 ? 0 : (index === 0 ? -3 : 3) }}
                 whileInView={{ opacity: 1, y: 0, rotate: index === 1 ? 0 : (index === 0 ? -2 : 2) }}
                 whileHover={{
@@ -308,6 +312,7 @@ export default function Home() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.15 }}
                 className="group relative cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
               >
                 {/* SHADOW LAYER */}
                 <div className="absolute inset-0 bg-black translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 transition-transform group-hover:translate-x-8 group-hover:translate-y-8"></div>

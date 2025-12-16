@@ -81,6 +81,7 @@ export function VanityQuiz() {
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed bottom-36 left-4 bg-black text-white px-4 py-2 font-bold border-2 border-white hover:bg-white hover:text-black transition-colors z-[50] shadow-[4px_4px_0px_#ff0000] text-xs md:text-sm"
+                style={{ touchAction: 'manipulation' }}
             >
                 ⚠️ QUIZ DA VAIDADE
             </button>

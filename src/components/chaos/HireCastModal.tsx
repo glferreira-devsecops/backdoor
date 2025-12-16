@@ -12,6 +12,7 @@ export function HireCastModal() {
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed bottom-24 right-4 md:bottom-4 md:right-8 bg-[#00ff00] text-black px-6 py-3 font-black border-4 border-black transition-all z-[95] shadow-[6px_6px_0px_#000] uppercase hover:-translate-y-1 hover:translate-x-1 hover:shadow-[10px_10px_0px_#000] active:translate-y-0 active:translate-x-0 active:shadow-[2px_2px_0px_#000] group flex items-center gap-3"
+                style={{ touchAction: 'manipulation' }}
             >
                 <DollarSign className="w-5 h-5 group-hover:animate-spin" />
                 <span>Contratar Elenco</span>

@@ -41,13 +41,15 @@
     @apply bg-[#00cc00];
   }
 
-  /* AWWWARDS: Smooth transitions on all interactive elements */
+  /* AWWWARDS: Smooth transitions on all interactive elements + iOS TOUCH FIX */
   button,
   a,
   input,
   textarea,
   select {
     @apply transition-all duration-200 ease-out;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
