@@ -1,10 +1,12 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Custom Cursor Component - Optimized for Performance
+// DISABLED ON TOUCH DEVICES (mobile/tablet)
 export function CustomCursor() {
+    const [isTouchDevice, setIsTouchDevice] = useState(true); // Default to true to avoid flash
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const cursorScale = useMotionValue(1);
@@ -16,6 +18,27 @@ export function CustomCursor() {
     const cursorY = useSpring(mouseY, springConfig);
 
     useEffect(() => {
+        // Detect touch device
+        const checkTouchDevice = () => {
+            const hasTouchScreen =
+                'ontouchstart' in window ||
+                navigator.maxTouchPoints > 0 ||
+                window.matchMedia('(hover: none)').matches ||
+                window.innerWidth < 768; // Also disable on small screens
+
+            setIsTouchDevice(hasTouchScreen);
+        };
+
+        checkTouchDevice();
+        window.addEventListener('resize', checkTouchDevice);
+
+        return () => window.removeEventListener('resize', checkTouchDevice);
+    }, []);
+
+    useEffect(() => {
+        // Don't add listeners on touch devices
+        if (isTouchDevice) return;
+
         const updateMouse = (e: MouseEvent) => {
             mouseX.set(e.clientX - 16);
             mouseY.set(e.clientY - 16);
@@ -44,7 +67,10 @@ export function CustomCursor() {
             window.removeEventListener("mousemove", updateMouse);
             window.removeEventListener("mouseover", handleMouseOver);
         };
-    }, [mouseX, mouseY, cursorScale, cursorRotate]);
+    }, [isTouchDevice, mouseX, mouseY, cursorScale, cursorRotate]);
+
+    // Don't render on touch devices
+    if (isTouchDevice) return null;
 
     return (
         <motion.div
@@ -66,3 +92,4 @@ export function CustomCursor() {
         </motion.div>
     );
 }
+

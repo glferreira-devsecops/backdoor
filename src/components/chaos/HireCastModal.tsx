@@ -28,17 +28,23 @@ export function HireCastModal() {
                         <motion.div
                             initial={{ scale: 0.8, rotate: -5 }}
                             animate={{ scale: 1, rotate: 0 }}
-                            className="bg-yellow-300 border-8 border-black p-8 max-w-lg w-full relative shadow-[20px_20px_0px_#fff]"
+                            onClick={(e) => e.stopPropagation()}
+                            className="bg-yellow-300 border-4 md:border-8 border-black p-4 md:p-8 max-w-lg w-full relative shadow-[10px_10px_0px_#fff] md:shadow-[20px_20px_0px_#fff] max-h-[90vh] overflow-y-auto touch-pan-y"
                         >
-                            <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 hover:bg-black hover:text-white border-2 border-black p-1 transition-colors">
-                                <X size={24} />
+                            {/* MOBILE-FRIENDLY CLOSE BUTTON (44x44 min tap target) */}
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="absolute top-2 right-2 md:top-4 md:right-4 w-12 h-12 flex items-center justify-center hover:bg-black hover:text-white border-2 border-black transition-colors bg-white active:scale-95"
+                                aria-label="Fechar modal"
+                            >
+                                <X size={28} />
                             </button>
 
                             <div className="flex justify-center mb-6">
                                 <DollarSign size={64} className="text-green-600 animate-bounce" />
                             </div>
 
-                            <h2 className="text-4xl font-black uppercase mb-4 text-center leading-none">
+                            <h2 className="text-2xl md:text-4xl font-black uppercase mb-4 text-center leading-none">
                                 O Cachê Deles é <span className="text-red-600 line-through">Caro</span> IMPOSSÍVEL.
                             </h2>
 

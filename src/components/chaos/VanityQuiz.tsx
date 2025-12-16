@@ -96,10 +96,15 @@ export function VanityQuiz() {
                         <motion.div
                             initial={{ scale: 0.8 }}
                             animate={{ scale: 1 }}
-                            className="bg-white border-8 border-red-600 p-8 max-w-lg w-full relative shadow-[20px_20px_0px_#000]"
+                            className="bg-white border-4 md:border-8 border-red-600 p-4 md:p-8 max-w-lg w-full relative shadow-[10px_10px_0px_#000] md:shadow-[20px_20px_0px_#000] max-h-[90vh] overflow-y-auto touch-pan-y"
                         >
-                            <button onClick={reset} className="absolute top-4 right-4 hover:bg-red-600 hover:text-white border-2 border-black p-1 transition-colors">
-                                <X size={24} />
+                            {/* MOBILE-FRIENDLY CLOSE BUTTON */}
+                            <button
+                                onClick={reset}
+                                className="absolute top-2 right-2 md:top-4 md:right-4 w-12 h-12 flex items-center justify-center hover:bg-red-600 hover:text-white border-2 border-black transition-colors bg-white active:scale-95"
+                                aria-label="Fechar quiz"
+                            >
+                                <X size={28} />
                             </button>
 
                             {!result ? (

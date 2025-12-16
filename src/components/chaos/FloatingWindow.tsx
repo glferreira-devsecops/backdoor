@@ -55,9 +55,10 @@ export function FloatingWindow({ id, title, text, x, y, rotation, visible, onClo
                     <button className="bg-[#c0c0c0] w-5 h-5 flex items-center justify-center border-t border-l border-white border-b-2 border-r-2 border-b-black border-r-black active:border-t-black active:border-l-black active:border-b-white active:border-r-white">
                         <Square size={8} className="text-black" />
                     </button>
+                    {/* CLOSE BUTTON - LARGER FOR MOBILE */}
                     <button
                         onClick={() => onClose(id)}
-                        className="bg-[#c0c0c0] w-5 h-5 flex items-center justify-center border-t border-l border-white border-b-2 border-r-2 border-b-black border-r-black active:border-t-black active:border-l-black active:border-b-white active:border-r-white hover:bg-red-600 group-btn"
+                        className="bg-[#c0c0c0] w-8 h-8 md:w-5 md:h-5 flex items-center justify-center border-t border-l border-white border-b-2 border-r-2 border-b-black border-r-black active:border-t-black active:border-l-black active:border-b-white active:border-r-white hover:bg-red-600 group-btn"
                     >
                         <X size={12} className="text-black group-btn-hover:text-white" />
                     </button>

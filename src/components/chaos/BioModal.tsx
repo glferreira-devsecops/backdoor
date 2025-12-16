@@ -86,15 +86,20 @@ export function BioModal({ profile, onClose }: BioModalProps) {
                         </div>
 
                         {/* RIGHT COLUMN: DOSSIER CONTENT */}
-                        <div className="w-full md:w-2/3 p-8 overflow-y-auto bg-[url('https://www.transparenttextures.com/patterns/notebook.png')]">
-                            <button onClick={onClose} className="absolute top-4 right-4 hover:bg-black hover:text-white border-2 border-black p-1 transition-colors z-50">
-                                <X size={24} />
+                        <div className="w-full md:w-2/3 p-4 md:p-8 overflow-y-auto bg-[url('https://www.transparenttextures.com/patterns/notebook.png')] touch-pan-y">
+                            {/* MOBILE-FRIENDLY CLOSE BUTTON (44x44 min tap target) */}
+                            <button
+                                onClick={onClose}
+                                className="absolute top-2 right-2 md:top-4 md:right-4 w-12 h-12 flex items-center justify-center hover:bg-black hover:text-white border-2 border-black transition-colors z-50 bg-white active:scale-95"
+                                aria-label="Fechar modal"
+                            >
+                                <X size={28} />
                             </button>
 
-                            {/* HEADER TAGS */}
-                            <div className="flex flex-wrap gap-2 mb-6">
+                            {/* HEADER TAGS - TOUCH FRIENDLY */}
+                            <div className="flex flex-wrap gap-2 mb-6 mt-8 md:mt-0">
                                 {profile.traits.map((trait, i) => (
-                                    <span key={i} className="bg-white border-2 border-black px-3 py-1 font-bold text-xs uppercase shadow-[2px_2px_0px_#000] flex items-center gap-1">
+                                    <span key={i} className="bg-white border-2 border-black px-3 py-2 font-bold text-xs uppercase shadow-[2px_2px_0px_#000] flex items-center gap-1 active:scale-95 transition-transform">
                                         <Award size={12} className="text-yellow-600" />
                                         {trait}
                                     </span>
@@ -125,9 +130,9 @@ export function BioModal({ profile, onClose }: BioModalProps) {
                                 </p>
                             </div>
 
-                            {/* STATS GRID */}
+                            {/* STATS GRID - MOBILE OPTIMIZED */}
                             {profile.stats && (
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                                <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 mb-6">
                                     {Object.entries(profile.stats).map(([key, value]) => (
                                         <div key={key} className="bg-white border-2 border-black p-3 text-center shadow-[4px_4px_0px_#ccc]">
                                             <div className="text-[10px] font-bold uppercase text-gray-500 mb-1">{key}</div>

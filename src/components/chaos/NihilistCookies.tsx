@@ -57,11 +57,13 @@ export function NihilistCookies() {
                             </button>
                         </div>
 
+                        {/* MOBILE-FRIENDLY CLOSE BUTTON */}
                         <button
                             onClick={() => handleAction("Fechar")}
-                            className="absolute top-1 right-1 bg-red-600 text-white p-1 border-2 border-black hover:bg-red-700"
+                            className="absolute -top-2 -right-2 md:top-1 md:right-1 w-10 h-10 md:w-8 md:h-8 flex items-center justify-center bg-red-600 text-white border-2 border-black hover:bg-red-700 active:scale-95"
+                            aria-label="Fechar aviso de cookies"
                         >
-                            <X size={10} />
+                            <X size={20} />
                         </button>
                     </div>
                 </motion.div>
