@@ -271,132 +271,171 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* PARTNERS - REAL PHOTOS REVEAL (REFINED) */}
-      <section className="container py-20 px-4">
-        <h2 className="text-6xl font-black uppercase text-center mb-16 bg-black text-white inline-block p-4 rotate-1 shadow-[10px_10px_0px_#ff0000]">
-          Os Culpados
-        </h2>
+      {/* PARTNERS - AWWWARDS LEVEL CARDS */}
+      <section className="py-24 bg-white border-y-8 border-black relative overflow-hidden">
+        {/* BACKGROUND TEXTURE */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/notebook.png')] opacity-30 pointer-events-none"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {(content.profiles.partners as Host[]).map((host, index) => (
-            <motion.div
-              layout
-              key={host.id}
-              onClick={() => setSelectedProfile(host)}
-              initial={{ opacity: 0, y: 100 }}
+        <div className="container px-4 relative z-10">
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{
-                scale: 1.05,
-                rotate: index % 2 === 0 ? 2 : -2,
-                boxShadow: "12px 12px 0px black"
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.1 }}
-              className="group relative"
+              className="text-5xl md:text-8xl font-black uppercase inline-block bg-black text-white p-4 md:p-6 rotate-[-1deg] shadow-[12px_12px_0px_#ff0000] mb-4"
             >
-              <div className="absolute inset-0 bg-black translate-x-4 translate-y-4 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
+              Os Culpados
+            </motion.h2>
+            <p className="font-mono text-sm md:text-base bg-yellow-400 text-black inline-block px-4 py-2 border-2 border-black shadow-[4px_4px_0px_#000] mt-4">
+              CLIQUE PARA ABRIR O DOSSIÊ CONFIDENCIAL
+            </p>
+          </div>
 
-              {/* STAMP OVERLAY */}
-              <div className="absolute top-4 right-4 z-30 opacity-70 rotate-[20deg] pointer-events-none border-4 border-red-600 p-2 text-red-600 font-black uppercase text-xl md:text-2xl animate-pulse mix-blend-multiply">
-                CONFIDENCIAL
-              </div>
+          {/* RESPONSIVE GRID - 1 COL MOBILE, 3 COL DESKTOP */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {(content.profiles.partners as Host[]).map((host, index) => (
+              <motion.div
+                layout
+                key={host.id}
+                onClick={() => setSelectedProfile(host)}
+                initial={{ opacity: 0, y: 100, rotate: index === 1 ? 0 : (index === 0 ? -3 : 3) }}
+                whileInView={{ opacity: 1, y: 0, rotate: index === 1 ? 0 : (index === 0 ? -2 : 2) }}
+                whileHover={{
+                  scale: 1.03,
+                  rotate: 0,
+                  y: -10,
+                  transition: { type: "spring", stiffness: 400 }
+                }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.15 }}
+                className="group relative cursor-pointer"
+              >
+                {/* SHADOW LAYER */}
+                <div className="absolute inset-0 bg-black translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 transition-transform group-hover:translate-x-8 group-hover:translate-y-8"></div>
 
-              {/* GLITCH OVERLAY (VISUAL NOISE) */}
-              <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] mix-blend-overlay"></div>
+                {/* CONFIDENCIAL STAMP */}
+                <motion.div
+                  animate={{ rotate: [15, 25, 15] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="absolute top-4 right-4 md:top-6 md:right-6 z-30 pointer-events-none border-4 border-red-600 px-3 py-1 text-red-600 font-black uppercase text-sm md:text-xl rotate-[20deg] mix-blend-multiply"
+                >
+                  CONFIDENCIAL
+                </motion.div>
 
-              <div className="relative border-4 border-black bg-white p-0 overflow-hidden">
-                {/* IMAGE WITH DITHER EFFECT */}
-                <div className="relative aspect-[4/5] bg-gray-200 border-b-4 border-black grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300 cursor-crosshair overflow-hidden">
-                  <Image
-                    src={host.image}
-                    alt={host.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
+                {/* GLITCH/NOISE OVERLAY */}
+                <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] mix-blend-overlay transition-opacity duration-300"></div>
 
-                  {/* Chaos Level Bar Overlay */}
-                  <div className="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-md p-4 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="flex justify-between text-xs font-bold uppercase mb-1">
-                      <span className="text-[#00ff00]">Nível de Caos</span>
-                      <span>{host.chaosLevel}/10</span>
-                    </div>
-                    <div className="w-full h-2 bg-gray-600 rounded-full overflow-hidden mb-4">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${host.chaosLevel * 10}%` }}
-                        className="h-full bg-[#00ff00] shadow-[0_0_10px_#00ff00]"
-                      />
-                    </div>
+                {/* CARD BODY */}
+                <div className="relative border-4 md:border-8 border-black bg-white overflow-hidden">
+                  {/* IMAGE CONTAINER */}
+                  <div className="relative aspect-[3/4] bg-gray-200 border-b-4 md:border-b-8 border-black overflow-hidden">
+                    <Image
+                      src={host.image}
+                      alt={host.name}
+                      fill
+                      className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
 
-                    {/* CANCELOMETER - SUPER EDITION */}
-                    {host.cancelPercentage && (
-                      <div className="border-t border-gray-600 pt-2">
-                        <div className="flex justify-between text-xs font-bold uppercase mb-1 text-red-500">
-                          <span className="animate-pulse flex items-center gap-1"><AlertTriangle size={10} /> RISCO DE CANCELAMENTO</span>
-                          <span className="text-xl font-black">{host.cancelPercentage}%</span>
-                        </div>
-                        <div className="w-full h-6 bg-gray-800 border-2 border-red-600 relative overflow-hidden skew-x-[-10deg]">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${host.cancelPercentage}%` }}
-                            animate={{ opacity: [0.8, 1, 0.8] }}
-                            transition={{ repeat: Infinity, duration: 0.2 }}
-                            className="h-full bg-[repeating-linear-gradient(45deg,red,red_10px,transparent_10px,transparent_20px)]"
-                          />
-                        </div>
+                    {/* SCANLINES OVERLAY */}
+                    <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.03)_2px,rgba(0,0,0,0.03)_4px)] pointer-events-none"></div>
+
+                    {/* CHAOS & CANCEL BAR (APPEARS ON HOVER) */}
+                    <div className="absolute bottom-0 left-0 w-full bg-black/90 backdrop-blur-md p-4 md:p-6 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                      {/* CHAOS LEVEL */}
+                      <div className="flex justify-between text-xs md:text-sm font-bold uppercase mb-2">
+                        <span className="text-[#00ff00] flex items-center gap-1"><Zap size={14} className="animate-pulse" /> Nível de Caos</span>
+                        <span className="text-2xl font-black">{host.chaosLevel}/10</span>
                       </div>
-                    )}
-                  </div>
-                </div>
+                      <div className="w-full h-3 bg-gray-800 border-2 border-[#00ff00] rounded-sm overflow-hidden mb-4">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${host.chaosLevel * 10}%` }}
+                          transition={{ delay: 0.3, duration: 1 }}
+                          className="h-full bg-gradient-to-r from-yellow-400 to-[#00ff00] shadow-[0_0_10px_#00ff00]"
+                        />
+                      </div>
 
-                <div className="p-6 relative">
-                  <motion.h3
-                    layout
-                    className="text-3xl font-black uppercase leading-none mb-2 group-hover:text-red-600 transition-colors"
-                  >
-                    {host.name}
-                  </motion.h3>
-                  <p className="font-mono text-xs bg-red-600 text-white inline-block px-2 py-1 mb-4">{host.role}</p>
-                  <p className="font-serif text-sm border-l-2 border-black pl-3 mb-4 italic group-hover:bg-yellow-200 transition-colors">
-                    &quot;{host.desc}&quot;
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {host.traits.map((t: string) => (
-                      <span key={t} className="text-[10px] font-black uppercase border border-black px-2 py-1 hover:bg-black hover:text-[#00ff00] cursor-crosshair transition-colors shadow-[2px_2px_0px_#ccc] hover:shadow-[4px_4px_0px_black] active:shadow-none hover:-translate-y-1 active:translate-y-0">
-                        {t}
-                      </span>
-                    ))}
+                      {/* CANCELOMETER */}
+                      {host.cancelPercentage && (
+                        <div className="border-t border-gray-700 pt-3">
+                          <div className="flex justify-between text-xs md:text-sm font-bold uppercase mb-2">
+                            <span className="text-red-500 flex items-center gap-1"><AlertTriangle size={14} className="animate-bounce" /> Risco Cancelamento</span>
+                            <span className="text-2xl font-black text-red-500">{host.cancelPercentage}%</span>
+                          </div>
+                          <div className="w-full h-4 bg-gray-900 border-2 border-red-600 overflow-hidden skew-x-[-5deg]">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${host.cancelPercentage}%` }}
+                              transition={{ delay: 0.5, duration: 1.2 }}
+                              className="h-full bg-[repeating-linear-gradient(45deg,red,red_8px,darkred_8px,darkred_16px)]"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* TEXT CONTENT */}
+                  <div className="p-4 md:p-6 bg-white relative">
+                    {/* ID TAG */}
+                    <div className="absolute top-0 right-4 -translate-y-1/2 bg-[#00ff00] text-black font-mono text-[10px] md:text-xs font-bold px-2 py-1 border-2 border-black shadow-[2px_2px_0px_#000]">
+                      ID: {host.id.toUpperCase()}_007
+                    </div>
+
+                    <h3 className="text-2xl md:text-4xl font-black uppercase leading-none mb-2 group-hover:text-red-600 transition-colors tracking-tight">
+                      {host.name}
+                    </h3>
+                    <p className="font-mono text-xs md:text-sm bg-red-600 text-white inline-block px-2 py-1 mb-4 shadow-[2px_2px_0px_#000]">
+                      {host.role}
+                    </p>
+                    <p className="font-serif text-sm md:text-base border-l-4 border-black pl-3 italic leading-snug line-clamp-3 group-hover:bg-yellow-200 transition-colors">
+                      {host.desc.split('.')[0]}.
+                    </p>
+
+                    {/* CTA */}
+                    <div className="mt-4 pt-4 border-t-2 border-dashed border-gray-300 flex items-center justify-between">
+                      <span className="font-mono text-[10px] md:text-xs text-gray-500 uppercase">Ver Dossiê</span>
+                      <motion.div
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ repeat: Infinity, duration: 1 }}
+                        className="text-red-600 font-black"
+                      >
+                        →
+                      </motion.div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ASTRAL MAP - NEW SECTION */}
-      {content.astral && (
-        <section className="bg-purple-900 text-white py-20 border-y-8 border-black">
-          <div className="container px-4 text-center">
-            <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 flex justify-center gap-4 items-center">
-              🔮 MAPA ASTRAL DO CAOS
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {content.astral.map((item, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ scale: 1.1, rotate: (i % 2 === 0 ? 2 : -2) }}
-                  className="bg-black border-4 border-purple-500 p-8 shadow-[8px_8px_0px_#fff]"
-                >
-                  <h3 className="text-2xl font-black uppercase mb-2 text-purple-300">{item.title}</h3>
-                  <div className="text-sm font-mono bg-white text-black inline-block px-2 py-1 mb-4 font-bold">{item.sign}</div>
-                  <p className="font-serif italic text-lg">&quot;{item.prophecy}&quot;</p>
-                </motion.div>
-              ))}
+      {
+        content.astral && (
+          <section className="bg-purple-900 text-white py-20 border-y-8 border-black">
+            <div className="container px-4 text-center">
+              <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 flex justify-center gap-4 items-center">
+                🔮 MAPA ASTRAL DO CAOS
+              </h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {content.astral.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.1, rotate: (i % 2 === 0 ? 2 : -2) }}
+                    className="bg-black border-4 border-purple-500 p-8 shadow-[8px_8px_0px_#fff]"
+                  >
+                    <h3 className="text-2xl font-black uppercase mb-2 text-purple-300">{item.title}</h3>
+                    <div className="text-sm font-mono bg-white text-black inline-block px-2 py-1 mb-4 font-bold">{item.sign}</div>
+                    <p className="font-serif italic text-lg">&quot;{item.prophecy}&quot;</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
       {/* OBSESSIONS TICKER ANIMATED */}
       <section className="bg-yellow-400 border-y-4 border-black py-4 overflow-hidden whitespace-nowrap hover:bg-yellow-300 transition-colors">
@@ -432,6 +471,6 @@ export default function Home() {
 
       {/* MODALS */}
       <BioModal profile={selectedProfile} onClose={() => setSelectedProfile(null)} />
-    </main>
+    </main >
   );
 }
