@@ -540,7 +540,7 @@ export default function Home() {
         <div
           className="inline-flex animate-marquee group-hover:[animation-play-state:paused]"
           style={{
-            animation: 'marquee 30s linear infinite',
+            animation: 'marquee 60s linear infinite',
           }}
         >
           {[...content.obsessions, ...content.obsessions, ...content.obsessions, ...content.obsessions].map((obs, i) => (
@@ -561,7 +561,7 @@ export default function Home() {
             100% { transform: translateX(-50%); }
           }
           .animate-marquee {
-            animation: marquee 30s linear infinite;
+            animation: marquee 60s linear infinite;
             will-change: transform;
           }
         `}</style>
