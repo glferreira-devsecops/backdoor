@@ -133,9 +133,9 @@ export function TopicGenerator() {
                     <button
                         onClick={generateTopic}
                         disabled={isSpinning}
-                        className="bg-[#00ff00] text-black font-black text-2xl px-16 py-6 uppercase border-4 border-black hover:bg-white hover:text-red-600 hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-4 mx-auto shadow-[8px_8px_0px_black]"
+                        className="bg-[#00ff00] text-black font-black text-lg md:text-2xl px-8 py-4 md:px-16 md:py-6 uppercase border-4 border-black hover:bg-white hover:text-red-600 hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 md:gap-4 mx-auto shadow-[4px_4px_0px_black] md:shadow-[8px_8px_0px_black] min-h-[56px]"
                     >
-                        <Shuffle className={`w-8 h-8 ${isSpinning ? "animate-spin" : ""}`} />
+                        <Shuffle className={`w-6 h-6 md:w-8 md:h-8 ${isSpinning ? "animate-spin" : ""}`} />
                         {isSpinning ? "RODANDO..." : "GIRE A ROLETA"}
                     </button>
 
