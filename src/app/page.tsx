@@ -437,19 +437,36 @@ export default function Home() {
         )
       }
 
-      {/* OBSESSIONS TICKER ANIMATED */}
-      <section className="bg-yellow-400 border-y-4 border-black py-4 overflow-hidden whitespace-nowrap hover:bg-yellow-300 transition-colors">
-        <motion.div
-          animate={{ x: [0, -1000] }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-          className="inline-block"
+      {/* OBSESSIONS TICKER - AWWWARDS SMOOTH MARQUEE */}
+      <section className="bg-yellow-400 border-y-4 border-black py-4 overflow-hidden whitespace-nowrap hover:bg-yellow-300 transition-colors group">
+        <div
+          className="inline-flex animate-marquee group-hover:[animation-play-state:paused]"
+          style={{
+            animation: 'marquee 30s linear infinite',
+          }}
         >
-          {[...content.obsessions, ...content.obsessions, ...content.obsessions].map((obs, i) => (
-            <span key={i} className="text-2xl font-black uppercase mx-8">
-              <span className="text-red-600 mr-2">⚠</span> {obs.title}: {obs.desc} <span className="ml-8 text-red-600">●</span>
+          {[...content.obsessions, ...content.obsessions, ...content.obsessions, ...content.obsessions].map((obs, i) => (
+            <span
+              key={i}
+              className="text-xl md:text-2xl font-black uppercase mx-6 md:mx-10 flex items-center gap-2 shrink-0"
+            >
+              <span className="text-red-600 animate-pulse">⚠</span>
+              <span className="text-black">{obs.title}:</span>
+              <span className="font-bold text-gray-800">{obs.desc}</span>
+              <span className="text-red-600 ml-4">●</span>
             </span>
           ))}
-        </motion.div>
+        </div>
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+            will-change: transform;
+          }
+        `}</style>
       </section>
 
       {/* FOOTER */}
