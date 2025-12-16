@@ -8,24 +8,49 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' })
 
 export const metadata: Metadata = {
-  title: 'Dossiê Não Importa | O Guia da Irrelevância',
-  description: 'Um mapa psiquiátrico de milionários com TDAH. O site que o João Vicente não quer que você veja.',
+  metadataBase: new URL('https://naoimporta.vercel.app'),
+  title: '⚠️ DOSSIÊ NÃO IMPORTA | Material Vazado',
+  description: 'ALERTA: Contém o cadastro de pés do João Vicente, o salário do Estagiário (R$0) e provas de que o Gregório dormiu em 94% das gravações. Acesse antes do processo.',
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',
     apple: '/icon.svg',
   },
+  keywords: ['nao importa', 'porta dos fundos', 'podcast', 'humor', 'joao vicente', 'gregorio duvivier', 'fabio porchat'],
+  authors: [{ name: 'Estagiário Anônimo (Demitido)', url: 'https://rettecnologia.org' }],
+  creator: 'A Vítima do Porta dos Fundos',
   openGraph: {
-    title: '⚠️ CUIDADO: Dossiê Vazado',
-    description: 'Contém: Fotos de pés, diagnósticos de rinite e o salário do estagiário.',
-    images: ['https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif'],
+    title: '🚨 VAZOU: Dossiê Confidencial do Não Importa',
+    description: '📁 CONTÉM: Taxonomia de Pés do João Vicente (Gengibre, Tia Morta, Chuta-Coco) | Comprovante de 90min de atraso do Gregório | Áudio do Porchat gritando por 4h seguidas | DMs vazadas ("tesão nas veias") | Diagnóstico: Conjuntivite Fantasma',
+    siteName: 'Dossiê Não Importa - Material Classificado',
+    images: [
+      {
+        url: '/cover_light.png',
+        width: 1200,
+        height: 630,
+        alt: 'CONFIDENCIAL: Não abra se for advogado do Porta',
+      }
+    ],
     type: 'website',
+    locale: 'pt_BR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gregório Duvivier dormiu enquanto lia este tweet.',
-    description: 'Acesse antes que o processo chegue.',
-  }
+    title: '🔴 URGENTE: Gregório Duvivier dormiu lendo este tweet',
+    description: 'Porchat já está gritando. João Vicente está olhando pro espelho. O Estagiário está atrasado. Luís (o cão) é o único trabalhando. Acesse o dossiê completo.',
+    creator: '@naoimportapod',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({
