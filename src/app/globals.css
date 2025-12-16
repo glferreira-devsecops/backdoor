@@ -3,8 +3,51 @@
 @tailwind utilities;
 
 @layer base {
+
+  /* AWWWARDS: Global smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-chaos-black text-chaos-green font-mono cursor-crosshair overflow-x-hidden;
+  }
+
+  /* AWWWARDS: Focus-visible for keyboard accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-[#00ff00] ring-offset-2 ring-offset-black;
+  }
+
+  /* AWWWARDS: Smooth selection colors */
+  ::selection {
+    @apply bg-red-600 text-white;
+  }
+
+  /* AWWWARDS: Custom scrollbar (WebKit) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#00ff00] border-2 border-black;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#00cc00];
+  }
+
+  /* AWWWARDS: Smooth transitions on all interactive elements */
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    @apply transition-all duration-200 ease-out;
   }
 }
 
@@ -19,5 +62,15 @@
 
   .cursor-none {
     cursor: none;
+  }
+
+  /* AWWWARDS: Touch action for mobile scroll */
+  .touch-pan-y {
+    touch-action: pan-y;
+  }
+
+  /* AWWWARDS: Hardware-accelerated animations */
+  .will-change-transform {
+    will-change: transform;
   }
 }
