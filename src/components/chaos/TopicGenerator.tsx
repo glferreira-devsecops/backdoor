@@ -2,100 +2,122 @@
 
 import { motion } from "framer-motion";
 import { AlertTriangle, Shuffle, Sparkles, Zap } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 const TOPICS = [
-    // DILEMAS MODERNOS
-    "A morte da TV Aberta",
-    "Gente que anda devagar na calçada",
-    "A ética de comer uva no mercado",
-    "Influenciadores de LinkedIn",
-    "O cheiro de hospital",
-    "Medo de aranha vs. Medo de boleto",
-    "Fofoca de gente morta (Chico Xavier)",
-    "A volta da pochete: Estilo ou Desistência?",
-    "Chuca: Tabu ou Higiene Básica?",
-    "Podcast de True Crime para dormir",
-    "A gourmetização do pão na chapa",
-    "Traumas de infância com palhaços de festa",
-    "A solidão do goleiro de society",
-    "Reforma ortográfica: Pra quê 'ideia' sem acento?",
-    "O conceito de 'Cringe' para quem tem 30+",
-    "Famosos que parecem que cheiram a queijo",
-    "Brigadeiro de whey: Crime Gastronômico",
-    "Coach quântico que reprograma DNA",
-    "A obsessão branca por Pêra-Uva",
-    "Será que o Porchat grita por dentro?",
-    "Por que todo calvo usa boné da New Era?",
-    "O mistério da meia que some na máquina",
-    "Adulto usando Crocs em reunião de board",
-    "Namoro vs. CLT: Qual humilha mais?",
-    "A vida sexual triste dos pandas",
-    "Barulho de moto: compensação fálica?",
-    "A ditadura do 'Good Vibes Only'",
-    "Veganos que comem bacon escondido no hotel",
-    "Áudio de 5 minutos no WhatsApp: Pode matar?",
-    "Pessoas que aplaudem o pôr do sol no Arpoador",
-    "Aprender mandarim por pressão do pai rico",
-    "Crossfit: Seita, Esporte ou Lesão?",
-    "Onde os pombos morrem? (Teoria da Conspiração)",
-    "Medo irracional de ventilador de teto cair",
-    "Quem inventou a reunião que poderia ser e-mail?",
+    // DILEMAS MODERNOS ABSURDOS
+    "Gente que anda devagar na calçada merece pena de morte?",
+    "A ética de comer uva no mercado: Furto ou Degustação?",
+    "Influenciadores de LinkedIn: Psicopatas ou Só Carentes?",
+    "O cheiro de hospital é o perfume do capitalismo?",
+    "Medo de aranha vs. Medo de boleto: Qual te paralisa?",
+    "A volta da pochete: Estilo, Desistência ou Meia-Idade?",
+    "Chuca: Tabu, Higiene Básica ou Filosofia de Vida?",
+    "Podcast de True Crime para dormir: Saudável ou Psicopatia?",
+    "Brigadeiro de whey: Crime Gastronômico ou Evolução?",
+    "Coach quântico que reprograma DNA: Golpe ou Ciência?",
+    "Por que todo calvo usa boné da New Era? Conspiração?",
+    "O mistério da meia que some na máquina: Portal dimensional?",
+    "Adulto usando Crocs em reunião de board: Coragem ou Demissão?",
+    "Namoro vs. CLT: Qual exige mais humilhação?",
+    "A vida sexual triste dos pandas: Depressão ou Preguiça?",
+    "Barulho de moto alta: compensação fálica ou surdez?",
+    "A ditadura do 'Good Vibes Only': Tóxico ou Necessário?",
+    "Veganos que comem bacon escondido no hotel: Fracos ou Espertos?",
+    "Áudio de 5 minutos no WhatsApp: Permitir ou Bloquear?",
+    "Pessoas que aplaudem o pôr do sol: Cult ou Annoying?",
+    "Crossfit: Seita, Esporte ou Mutilação Voluntária?",
+    "Onde os pombos morrem? Teoria da Conspiração Urbana",
+    "Medo irracional de ventilador de teto cair: Trauma ou Física?",
+    "Reunião que poderia ser e-mail: Quem inventou isso?",
     "A farsa do 'trabalhe enquanto eles dormem'",
-    "Nudes não solicitados: Crime ou Castigo?",
-    "O submundo dos grupos de condomínio",
-    "Sapatênis: O calçado da derrota masculina",
-    "Cerveja artesanal com gosto de sabão e ipa",
-    "Astrologia para cachorros (Meu pug é de leão)",
-    "O primo rico que vende Hinode",
-    "Férias com a família: Lazer ou Penitência?",
-    "A gourmetização do podre (Vinho Natural)",
-    "Séries que ninguém viu mas todo mundo finge que viu",
-    "O trauma do EAD e a câmera fechada",
-    "Pessoas que falam 'gratiluz' não ironicamente",
-    "O preço do azeite: O novo Bitcoin",
-    "Fila de banco como experiência antropológica",
-    "A vida secreta dos motoristas de Uber",
+    "Nudes não solicitados: Crime, Castigo ou Estupidez?",
+    "O submundo violento dos grupos de condomínio",
+    "Sapatênis: O calçado oficial da derrota masculina",
+    "Cerveja artesanal com gosto de sabão: Frescura ou Padrão?",
+    "Astrologia para cachorros: Meu pug é de leão e latiu do nada",
+    "O primo rico que vende Hinode: Amor ou Golpe Familiar?",
+    "Férias com a família: Lazer, Penitência ou Trauma?",
+    "O preço do azeite: O novo Bitcoin brasileiro",
+    "Fila de banco às 10h da manhã: Experiência antropológica",
+    "Motorista de Uber que conversa demais: Extrovertido ou Psicopata?",
+    "Por que todo dentista pergunta coisas com a mão na sua boca?",
+    "A obsessão nacional por Pêra-Uva-Maçã",
+    "Gente que responde 'kkk' com um 'k' só: Ameaça velada?",
+    "Café sem açúcar: Amadurecimento ou Sofrimento?",
+    "Açaí com banana: Top 1 ou Preguiça culinária?",
+    "Piada de tiozão no churrasco: Tradição ou Tortura?",
+    "Reply All no e-mail corporativo: Deveria ser crime?",
+    "Gente que fala 'não sou de beber' e bebe: Mitômano?",
 
-    // PORTA DOS FUNDOS SPECIFIC
-    "O Joanete do João Vicente: Patrimônio Histórico?",
-    "Gregório dormindo em velório de parente distante",
-    "A risada da Evelyn Castro como arma sônica",
-    "Porchat comprando países pequenos no débito",
-    "O Estagiário que virou CEO por engano",
-    "Rafael Portugal: Humano ou Muppet?",
-    "Fazer 'publi' de jogo do tigrinho é ético?",
-    "O Fantasma do Natal Passado (que votou errado)",
-    "Peçanha e a brutalidade policial recreativa",
-    "Dona Helena e a sexualidade na terceira idade",
-    "Jesus voltândo e sendo cancelado no Twitter",
-    "Moises abrindo o Mar Vermelho pra passar jet ski",
-    "Deus é brasileiro e está de ressaca",
-    "O Diabo pedindo demissão por burnout"
+    // PORTA DOS FUNDOS ESPECÍFICOS
+    "O Joanete do João Vicente: Patrimônio Histórico Nacional?",
+    "Gregório dormindo em velório: Falta de educação ou Narcolepsia?",
+    "A risada da Evelyn Castro poderia quebrar vidros?",
+    "Porchat comprando países pequenos no débito: Possível?",
+    "O Estagiário que virou CEO por engano: Meritocracia?",
+    "Rafael Portugal: Humano, Muppet ou Entidade?",
+    "Publi de jogo do tigrinho: Ético ou Aposentadoria garantida?",
+    "O Fantasma do Natal Passado que votou errado: Arrependimento?",
+    "Peçanha e a brutalidade policial como comédia: Permitido?",
+    "Dona Helena e a sexualidade na terceira idade: Tabu?",
+    "Jesus voltando e sendo cancelado no Twitter: Timeline provável?",
+    "Moisés abrindo o Mar Vermelho pra passar jet ski: Estilo?",
+    "Deus é brasileiro e está de ressaca desde 2018",
+    "O Diabo pedindo demissão por burnout: Justo?",
+    "Pé de Porchat nota zero: João Vicente foi cruel?",
+    "O grito do Porchat quebra equipamentos? Análise técnica",
+    "Gregório atrasando 90min: Gera conteúdo ou é só preguiça?",
+    "O cachorro Luís deveria ser CEO do Porta dos Fundos?",
+    "DM de João Vicente: poesia erótica ou crime de constrangimento?",
+    "Paula (da festa) superou o trauma do beijo forçado?",
+    "Fani batendo a cabeça de Gregório no chapisco: Amor ou Violência?",
+    "O salário do Estagiário é R$0,00: Exploração ou Experiência?",
+    "Por que o Porchat não sabe o que é o Não Importa?",
+    "Conjuntivite do Gregório: Real ou Desculpa Padrão?"
 ];
+
+// Fisher-Yates shuffle for fair random distribution
+function shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
 
 export function TopicGenerator() {
     const [topic, setTopic] = useState("CLIQUE PARA GERAR UM TEMA");
     const [isSpinning, setIsSpinning] = useState(false);
+    const shuffledTopicsRef = useRef<string[]>([]);
+    const currentIndexRef = useRef(0);
+
+    const getNextTopic = useCallback(() => {
+        // If we've used all topics or haven't started, reshuffle
+        if (currentIndexRef.current >= shuffledTopicsRef.current.length || shuffledTopicsRef.current.length === 0) {
+            shuffledTopicsRef.current = shuffleArray(TOPICS);
+            currentIndexRef.current = 0;
+        }
+        const nextTopic = shuffledTopicsRef.current[currentIndexRef.current];
+        currentIndexRef.current++;
+        return nextTopic;
+    }, []);
 
     const generateTopic = () => {
         setIsSpinning(true);
         let count = 0;
         const interval = setInterval(() => {
-            // Simple random shuffle for visual effect
+            // Visual shuffle effect
             setTopic(TOPICS[Math.floor(Math.random() * TOPICS.length)]);
             count++;
-            if (count > 25) {
+            if (count > 20) {
                 clearInterval(interval);
                 setIsSpinning(false);
-                // Final selection: Ensure it's not the same as before (simple check)
-                let newTopic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-                while (newTopic === topic) {
-                    newTopic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-                }
-                setTopic(newTopic);
+                // Use Fisher-Yates shuffled topic (guaranteed non-repeat until all shown)
+                setTopic(getNextTopic());
             }
-        }, 40);
+        }, 50);
     };
 
     return (
