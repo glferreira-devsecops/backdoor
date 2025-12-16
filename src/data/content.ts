@@ -84,7 +84,10 @@ export const content = {
         { title: "João Vicente", sign: "Ascendente em Espelho", prophecy: "Será cancelado por dizer que o pé de Gisele Bündchen 'não tem personalidade'. Morrerá tentando chupar o próprio dedão." },
         { title: "Gregório", sign: "Lua em Loratadina", prophecy: "Vai dormir durante o próprio julgamento no STF. Acordará apenas para pedir desculpas pelo privilégio de ter dormido." },
         { title: "Fábio Porchat", sign: "Sol em Rivotril", prophecy: "Comprará a Argentina só para demitir todos os garçons. Terá um infarto ao descobrir que o dia só tem 24 horas." },
-        { title: "Estagiário", sign: "Plutão em Atraso", prophecy: "Chegará no próprio enterro com 1h de atraso. O cachorro Luís herdará sua vaga." }
+        { title: "Estagiário", sign: "Plutão em Atraso", prophecy: "Chegará no próprio enterro com 1h de atraso. O cachorro Luís herdará sua vaga." },
+        { title: "Matheus Monk", sign: "Marte em Zarabatana", prophecy: "Desenvolverá PTSD ocupacional de tanto controlar o Porchat. Abrirá uma clínica de tratamento para diretores de comédia." },
+        { title: "Eduardo Branco", sign: "Vênus em Papel em Branco", prophecy: "Escreverá o roteiro perfeito. Ninguém lerá. Será encontrado chorando em posição fetal abraçado a uma pauta de 2019." },
+        { title: "Luís (O Cão)", sign: "Júpiter em Ração Premium", prophecy: "Assumirá o controle total do Porta dos Fundos. Demitirá o Estagiário. Terá mais engajamento que todos os humanos combinados." }
     ],
     production: {
         team: [
