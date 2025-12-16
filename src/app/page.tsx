@@ -122,8 +122,8 @@ export default function Home() {
       <section className="pt-24 pb-20 container min-h-screen flex items-center justify-center relative overflow-hidden perspective-1000">
         <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/notebook.png')] opacity-20 pointer-events-none"></div>
 
-        {/* DRAGGABLE FLOATING WINDOWS - NOW RESPONSIVE */}
-        <div className="absolute inset-0 pointer-events-none md:pointer-events-auto flex flex-col md:block justify-end pb-20 items-center gap-4 z-20">
+        {/* DRAGGABLE FLOATING WINDOWS - DESKTOP ONLY */}
+        <div className="absolute inset-0 pointer-events-none md:pointer-events-auto hidden md:block z-20">
           <AnimatePresence>
             {windows.map((win) => (
               <FloatingWindow

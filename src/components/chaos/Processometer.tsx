@@ -22,7 +22,7 @@ export function Processometer() {
         <motion.div
             initial={{ x: 300 }}
             animate={{ x: 0 }}
-            className="fixed bottom-4 left-4 bg-red-600 text-white border-4 border-black p-2 z-[90] font-mono text-xs md:text-sm shadow-[4px_4px_0px_black]"
+            className="fixed bottom-4 left-4 bg-red-600 text-white border-4 border-black p-2 z-[90] font-mono text-xs md:text-sm shadow-[4px_4px_0px_black] hidden md:block"
         >
             <div className="font-black uppercase mb-1">Processômetro</div>
             <div className="text-2xl font-bold font-mono">R$ {count.toLocaleString('pt-BR')},00</div>

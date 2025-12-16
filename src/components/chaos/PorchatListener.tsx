@@ -29,7 +29,7 @@ export function PorchatListener() {
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ y: -100, opacity: 0, scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] w-[95%] max-w-md"
+                    className="fixed top-16 left-1/2 -translate-x-1/2 z-[9999] w-[95%] max-w-md"
                 >
                     <div className="bg-black border-4 border-[#00ff00] text-[#00ff00] p-4 flex items-start gap-4 shadow-[6px_6px_0px_#00ff00] relative">
                         {/* CLOSE BUTTON - MOBILE FRIENDLY */}
