@@ -455,31 +455,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ASTRAL MAP - NEW SECTION */}
-      {
-        content.astral && (
-          <section className="bg-purple-900 text-white py-20 border-y-8 border-black">
-            <div className="container px-4 text-center">
-              <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 flex justify-center gap-4 items-center">
-                🔮 MAPA ASTRAL DO CAOS
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {content.astral.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.1, rotate: (i % 2 === 0 ? 2 : -2) }}
-                    className="bg-black border-4 border-purple-500 p-8 shadow-[8px_8px_0px_#fff]"
-                  >
-                    <h3 className="text-2xl font-black uppercase mb-2 text-purple-300">{item.title}</h3>
-                    <div className="text-sm font-mono bg-white text-black inline-block px-2 py-1 mb-4 font-bold">{item.sign}</div>
-                    <p className="font-serif italic text-lg">&quot;{item.prophecy}&quot;</p>
-                  </motion.div>
-                ))}
-              </div>
+      {/* 🔮 MAPA ASTRAL DO CAOS - AWWWARDS SECTION */}
+      {content.astral && (
+        <section className="bg-gradient-to-br from-purple-950 via-purple-900 to-black text-white py-16 md:py-24 border-y-8 border-purple-500 relative overflow-hidden">
+          {/* COSMIC BACKGROUND */}
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 pointer-events-none"></div>
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-10 left-10 w-4 h-4 bg-white rounded-full animate-pulse opacity-60"></div>
+            <div className="absolute top-1/4 right-20 w-2 h-2 bg-purple-300 rounded-full animate-ping opacity-40"></div>
+            <div className="absolute bottom-20 left-1/4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse opacity-50"></div>
+            <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-white rounded-full animate-ping opacity-30"></div>
+          </div>
+
+          <div className="container px-4 relative z-10">
+            {/* HEADER */}
+            <div className="text-center mb-12 md:mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: -30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="inline-block"
+              >
+                <div className="text-6xl md:text-8xl mb-4">🔮</div>
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter">
+                  MAPA ASTRAL DO CAOS
+                </h2>
+                <p className="font-mono text-purple-300 mt-4 text-sm md:text-base max-w-xl mx-auto">
+                  As profecias que o Universo tem para quem deveria ter ficado quieto.
+                </p>
+              </motion.div>
             </div>
-          </section>
-        )
-      }
+
+            {/* ASTRAL CARDS GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+              {content.astral.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 50, rotate: i % 2 === 0 ? -2 : 2 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: i % 2 === 0 ? 2 : -2,
+                    boxShadow: "0 0 30px rgba(147, 51, 234, 0.5)"
+                  }}
+                  transition={{ delay: i * 0.1, type: "spring", stiffness: 300 }}
+                  className="bg-black/80 backdrop-blur-sm border-4 border-purple-500 p-6 md:p-8 shadow-[8px_8px_0px_#9333ea] relative group overflow-hidden"
+                >
+                  {/* MYSTICAL GLOW */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* ZODIAC NUMBER */}
+                  <div className="absolute top-2 right-2 text-purple-700 font-black text-4xl opacity-20">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-black uppercase mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300">
+                      {item.title}
+                    </h3>
+                    <div className="text-xs md:text-sm font-mono bg-gradient-to-r from-purple-500 to-pink-500 text-white inline-block px-3 py-1 mb-4 font-bold shadow-lg">
+                      ✨ {item.sign}
+                    </div>
+                    <p className="font-serif italic text-base md:text-lg text-purple-100 leading-relaxed">
+                      &quot;{item.prophecy}&quot;
+                    </p>
+                  </div>
+
+                  {/* BOTTOM DECORATION */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* FOOTER NOTE */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="text-center font-mono text-purple-400 mt-12 text-xs md:text-sm"
+            >
+              ⚠️ Profecias geradas por IA treinada com os tweets deletados do João Vicente.
+            </motion.p>
+          </div>
+        </section>
+      )}
 
       {/* OBSESSIONS TICKER - AWWWARDS SMOOTH MARQUEE */}
       <section className="bg-yellow-400 border-y-4 border-black py-4 overflow-hidden whitespace-nowrap hover:bg-yellow-300 transition-colors group">
