@@ -3,15 +3,20 @@ export const content = {
         title: "O Paradigma do Anti-Podcast",
         text: [
             "No vasto ecossistema de mídia digital, o podcast NÃO IMPORTA emerge como um estudo de caso em anarquia calculada.",
-            "É o fardo dos 'sócios' obrigados a trabalhar enquanto o Porchat viaja.",
-            "Este relatório propõe um exame EXAUSTIVO do 'galã' e do 'intelectual' sendo sistematicamente desmantelados."
+            "É o fardo dos 'sócios' obrigados a trabalhar enquanto o Porchat viaja de jatinho para Mikonos.",
+            "Este relatório propõe um exame EXAUSTIVO do 'galã imbeijável', do 'intelectual narcoléptico' e do 'bilionário com TDAH' sendo sistematicamente expostos.",
+            "AVISO LEGAL: A leitura deste dossiê pode causar gargalhadas, constrangimento alheio e vontade de processar alguém."
         ]
     },
     obsessions: [
-        { title: "PÉ DE GENGIBRE", desc: "Retorcido, nodoso, raiz tuberosa. (João guarda um catálogo visual de cada pé que já viu)." },
-        { title: "CONJUNTIVITE FANTASMA", desc: "Gregório aparece de óculos escuros. Dormiu 4h. Foi obrigado a gravar." },
-        { title: "ZARABATANA", desc: "Único método comprovado para controlar o Porchat." },
-        { title: "CHUCA", desc: "Logística intestinal como filosofia de vida." }
+        { title: "PÉ DE GENGIBRE", desc: "Retorcido, nodoso, raiz tuberosa. João guarda um CATÁLOGO VISUAL de cada pé que já viu." },
+        { title: "CONJUNTIVITE FANTASMA", desc: "Gregório aparece de óculos escuros. Dormiu 4h. Foi obrigado a gravar. Culpa a 'alergia'." },
+        { title: "ZARABATANA", desc: "Único método comprovado para controlar o Porchat. Monk carrega 24h." },
+        { title: "CHUCA", desc: "Logística intestinal como filosofia de vida. João defende com FERVOR." },
+        { title: "O SALÁRIO DO ESTAGIÁRIO", desc: "R$ 0,00 (com desconto de vale-transporte)." },
+        { title: "LUÍS (O CÃO)", desc: "Tem ração premium, massagem e publi. A equipe tem burnout e café frio." },
+        { title: "DM DA GRACYANNE", desc: "'Tesão nas veias contraídas'. João Vicente: poeta vascular da madrugada." },
+        { title: "GRITO DO PORCHAT", desc: "Maior pico de decibéis já registrado. Vizinhos do estúdio processaram em 2019." }
     ],
     profiles: {
         partners: [
@@ -87,24 +92,31 @@ export const content = {
         { title: "Estagiário", sign: "Plutão em Atraso", prophecy: "Chegará no próprio enterro com 1h de atraso. O cachorro Luís herdará sua vaga." },
         { title: "Matheus Monk", sign: "Marte em Zarabatana", prophecy: "Desenvolverá PTSD ocupacional de tanto controlar o Porchat. Abrirá uma clínica de tratamento para diretores de comédia." },
         { title: "Eduardo Branco", sign: "Vênus em Papel em Branco", prophecy: "Escreverá o roteiro perfeito. Ninguém lerá. Será encontrado chorando em posição fetal abraçado a uma pauta de 2019." },
-        { title: "Luís (O Cão)", sign: "Júpiter em Ração Premium", prophecy: "Assumirá o controle total do Porta dos Fundos. Demitirá o Estagiário. Terá mais engajamento que todos os humanos combinados." }
+        { title: "Luís (O Cão)", sign: "Júpiter em Ração Premium", prophecy: "Assumirá o controle total do Porta dos Fundos. Demitirá o Estagiário. Terá mais engajamento que todos os humanos combinados." },
+        { title: "Paula (da Festa)", sign: "Saturno em Trauma", prophecy: "Nunca superou. Até hoje quando vê o João Vicente na TV, desliga. Fundará um grupo de apoio: 'Mulheres Assustadas por Galãs'." }
     ],
     production: {
         team: [
-            { name: "Matheus Monk", role: "O Domador", desc: "Segura uma ZARABATANA com dardos tranquilizantes para quando o Porchat começa a gritar. Único adulto funcional." },
-            { name: "Eduardo Branco", role: "Roteirista do Nada", desc: "O emprego mais difícil do mundo: escrever roteiros para um programa que se ORGULHA de não ter pauta. Chora no banho." },
-            { name: "O Estagiário", role: "Entidade Mítica", desc: "Atrasou 1h IMITANDO O GREGÓRIO e quase foi demitido. O cachorro Luís tem Instagram; ele não tem nem nome nos créditos." },
-            { name: "Luís (O Cão)", role: "CEO Moral", desc: "Tem mais seguidores, mimos e ração premium que a equipe inteira. O Estagiário é seu inimigo mortal." }
+            { name: "Matheus Monk", role: "O Domador", desc: "Segura uma ZARABATANA com dardos tranquilizantes para quando o Porchat começa a gritar. Único adulto funcional. Tem seguro de vida atualizado." },
+            { name: "Eduardo Branco", role: "Roteirista do Nada", desc: "O emprego mais difícil do mundo: escrever roteiros para um programa que se ORGULHA de não ter pauta. Chora no banho. O terapeuta dele tem terapeuta." },
+            { name: "O Estagiário", role: "Entidade Mítica", desc: "Atrasou 1h IMITANDO O GREGÓRIO e quase foi demitido. O cachorro Luís tem Instagram; ele não tem nem nome nos créditos. Mãe dele ainda não sabe que ele 'trabalha' lá." },
+            { name: "Luís (O Cão)", role: "CEO Moral", desc: "Tem mais seguidores, mimos e ração premium que a equipe inteira. Único ser vivo que o Porchat respeita. Tem plano de saúde melhor que o Estagiário." }
         ],
         abuse: [
-            { title: "O Grande Atraso", desc: "Estagiário chegou 1h atrasado imitando o Gregório. Descobriu que a meritocracia é uma farsa: quase foi demitido." },
-            { title: "O Paradoxo do Cão", desc: "Luís (o cão) recebe massagem e publis enquanto a equipe carrega cabo às 3h da manhã." }
+            { title: "O Grande Atraso", desc: "Estagiário chegou 1h atrasado imitando o Gregório. Descobriu que a meritocracia é uma farsa: quase foi demitido enquanto Gregório ganha cachê." },
+            { title: "O Paradoxo do Cão", desc: "Luís (o cão) recebe massagem, publis e hotéis 5 estrelas enquanto a equipe carrega cabo às 3h da manhã por R$ 0,00." },
+            { title: "A Dieta do Porchat", desc: "Jet lag perpétuo. Não come comida brasileira há 8 meses. Acha que coxinha é 'muito pesada'. Pede trufas no camarim." },
+            { title: "O Sono do Gregório", desc: "Dormiu EM CENA. A edição fingiu que era 'efeito dramático'. Ninguém notou a diferença. Virou meme interno." },
+            { title: "O Espelho do João", desc: "Pediu 3 espelhos no camarim. 'Um é pouco'. Quando perguntaram por quê, respondeu: 'Ângulos diferentes do meu rosto perfeito'." }
         ]
     },
     curiosities: [
-        { title: "Incidente Gracyanne", desc: "'Tesão nas veias contraídas da barriga'. A poesia vascular de João Vicente vazada na DM. Ele pediu: 'Atire a primeira pedra quem nunca fez um amorzinho safado na DM'." },
-        { title: "Fani e o Chapisco", desc: "Para provar que NÃO estavam namorando, Fani BATEU A CABEÇA de Gregório no chão de CHAPISCO até SANGRAR diante de toda a escola." },
-        { title: "Pé de Porchat", desc: "João classificou publicamente como 'muito ruim'. É a BASE da pirâmide podólatra. O pé de Isis Valverde 'não o surpreendeu'." }
+        { title: "Incidente Gracyanne", desc: "'Tesão nas veias contraídas da barriga'. A poesia vascular de João Vicente vazada na DM. Ele pediu: 'Atire a primeira pedra quem nunca fez um amorzinho safado na DM'. Ninguém atirou. Todos estavam ocupados salvando a screenshot." },
+        { title: "Fani e o Chapisco", desc: "Para provar que NÃO estavam namorando, Fani BATEU A CABEÇA de Gregório no chão de CHAPISCO até SANGRAR diante de toda a escola. O amor é lindo." },
+        { title: "Pé de Porchat", desc: "João classificou publicamente como 'muito ruim'. É a BASE da pirâmide podólatra. O pé de Isis Valverde 'não o surpreendeu'. O de Gregório 'é aceitável, mas cheira a soneca'." },
+        { title: "O Rugido Proibido", desc: "Porchat gritou tão alto em 2023 que o microfone queimou. A produção fez seguro contra danos vocais. Monk agora usa protetor auricular industrial." },
+        { title: "O Catálogo Podólatra", desc: "João Vicente mantém um ranking secreto de pés de celebridades. Gisele está em 4º lugar. O 1º lugar é de 'uma figurante de 2008 cujo nome ele esqueceu, mas o pé, nunca'." },
+        { title: "A Conjuntivite Eterna", desc: "Gregório usou 'conjuntivite' como desculpa 14 vezes em 2024. Na 15ª, a produção exigiu atestado. Ele apresentou uma receita de óculos de grau." }
     ]
 };
 
