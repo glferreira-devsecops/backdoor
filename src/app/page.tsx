@@ -206,108 +206,104 @@ export default function Home() {
       {/* TOPIC GENERATOR - REPLACING MANIFESTO */}
       <TopicGenerator />
 
-      {/* ECOLOGIA DA PRODUÇÃO - VERTICAL ON MOBILE, HORIZONTAL DRAG ON DESKTOP */}
-      <section className="py-16 md:py-24 overflow-x-auto bg-white border-y-8 border-black relative">
+      {/* 🌿 ECOLOGIA DA VÁRZEA - AWWWARDS COMPLETE REDESIGN */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-100 to-white border-y-8 border-black relative overflow-hidden">
+        {/* BACKGROUND TEXTURE */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-10 pointer-events-none"></div>
-        <div className="container px-4 mb-8 md:mb-12 relative z-10">
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase flex items-center gap-2 md:gap-4 tracking-tighter">
-            <Zap className="fill-yellow-400 text-black h-8 w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 animate-pulse" />
-            Ecologia da Várzea
-          </h2>
-          <p className="font-bold font-mono mt-4 bg-black text-white inline-block px-4 py-1 skew-x-[-10deg] text-sm md:text-base">
-            BASTIDORES DO CAOS &rarr; <span className="hidden md:inline">ARRASTE COM ÓDIO</span><span className="md:hidden">ROLE PARA VER</span>
-          </p>
+
+        {/* HEADER */}
+        <div className="container px-4 mb-10 md:mb-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+          >
+            <div>
+              <h2 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase flex items-center gap-2 md:gap-4 tracking-tighter">
+                <Zap className="fill-yellow-400 text-black h-8 w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 animate-pulse shrink-0" />
+                <span>Ecologia da Várzea</span>
+              </h2>
+              <p className="font-mono text-gray-600 mt-2 text-sm md:text-base">
+                Os bastidores do caos. Quem sofre para o show continuar.
+              </p>
+            </div>
+            <div className="font-bold font-mono bg-black text-white px-4 py-2 text-sm md:text-base shrink-0">
+              ⚠️ {content.production.team.length + content.production.abuse.length} FICHAS TÉCNICAS
+            </div>
+          </motion.div>
         </div>
 
-        {/* MOBILE: Vertical Grid | DESKTOP: Horizontal Drag */}
-        <div className="md:hidden container px-4 space-y-6">
-          {/* TEAM CARDS - MOBILE VERTICAL */}
-          {content.production.team.map((member, i) => (
-            <div
-              key={i}
-              className="bg-gray-100 border-4 border-black p-6 shadow-[8px_8px_0px_#000] relative overflow-hidden"
-            >
-              <div className="bg-black text-[#00ff00] border border-[#00ff00] inline-block px-3 py-1 font-mono font-bold text-xs mb-4 shadow-[2px_2px_0px_#00ff00]">
-                FICHA TÉCNICA #{i + 1}
-              </div>
-              <h3 className="text-2xl font-black uppercase mb-1 leading-none tracking-tight">{member.name}</h3>
-              <h4 className="text-red-600 font-black uppercase text-sm mb-4 border-b-4 border-black pb-2">{member.role}</h4>
-              <p className="font-serif leading-tight text-base italic border-l-4 border-gray-300 pl-4">{member.desc}</p>
-              <div className="mt-4 flex justify-between items-center border-t-2 border-dashed border-gray-400 pt-4">
-                <span className="text-xs font-mono text-gray-500 uppercase">STATUS: SOBREVIVENDO</span>
-                <AlertTriangle size={16} className="text-yellow-500" />
-              </div>
-            </div>
-          ))}
+        {/* RESPONSIVE GRID - WORKS PERFECTLY ON ALL SIZES */}
+        <div className="container px-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
 
-          {/* ABUSES CARDS - MOBILE VERTICAL */}
-          {content.production.abuse.map((abuse, i) => (
-            <div
-              key={`abuse-${i}`}
-              className="bg-red-600 text-white border-4 border-black p-6 shadow-[8px_8px_0px_#000] relative"
-            >
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10 mix-blend-multiply"></div>
-              <AlertTriangle className="absolute top-4 right-4 text-black h-8 w-8 animate-pulse" />
-              <div className="bg-white text-black inline-block px-2 font-black uppercase text-xs mb-4 transform -rotate-2">
-                ALERTA DE RH
-              </div>
-              <h3 className="text-xl font-black uppercase mb-4 pr-10 leading-tight">{abuse.title}</h3>
-              <p className="font-mono text-sm leading-relaxed opacity-90">{abuse.desc}</p>
-            </div>
-          ))}
-        </div>
+            {/* TEAM CARDS */}
+            {content.production.team.map((member, i) => (
+              <motion.div
+                key={`team-${i}`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03, rotate: i % 2 === 0 ? 1 : -1 }}
+                transition={{ delay: i * 0.1, type: "spring", stiffness: 300 }}
+                className="bg-white border-4 border-black p-6 md:p-8 shadow-[8px_8px_0px_#000] relative overflow-hidden group"
+              >
+                {/* NOISE OVERLAY */}
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
 
-        {/* DESKTOP: Horizontal Drag */}
-        <motion.div
-          className="hidden md:flex gap-8 px-8 cursor-grab active:cursor-grabbing w-fit"
-          drag="x"
-          dragConstraints={{ right: 0, left: -2000 }}
-          dragElastic={0.2}
-          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        >
-          {/* TEAM CARDS */}
-          {content.production.team.map((member, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 2 : -2, skewX: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-80 min-w-[340px] bg-gray-100 border-4 border-black p-8 shadow-[12px_12px_0px_#000] flex flex-col justify-between relative overflow-hidden group"
-            >
-              {/* NOISE OVERLAY */}
-              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-
-              <div>
-                <div className="bg-black text-[#00ff00] border border-[#00ff00] inline-block px-3 py-1 font-mono font-bold text-xs mb-4 shadow-[2px_2px_0px_#00ff00]">
-                  FICHA TÉCNICA #{i + 1}
+                {/* CARD NUMBER */}
+                <div className="absolute top-2 right-2 text-gray-200 font-black text-5xl opacity-50">
+                  {String(i + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-3xl font-black uppercase mb-1 leading-none tracking-tight">{member.name}</h3>
-                <h4 className="text-red-600 font-black uppercase text-sm mb-6 border-b-4 border-black pb-2">{member.role}</h4>
-                <p className="font-serif leading-tight text-lg italic border-l-4 border-gray-300 pl-4">{member.desc}</p>
-              </div>
-              <div className="mt-6 flex justify-between items-center border-t-2 border-dashed border-gray-400 pt-4">
-                <span className="text-xs font-mono text-gray-500 uppercase">STATUS: SOBREVIVENDO</span>
-                <AlertTriangle size={16} className="text-yellow-500" />
-              </div>
-            </motion.div>
-          ))}
 
-          {/* ABUSES CARDS */}
-          {content.production.abuse.map((abuse, i) => (
-            <motion.div
-              key={`abuse-${i}`}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              className="w-96 min-w-[400px] bg-red-600 text-white border-4 border-black p-8 shadow-[12px_12px_0px_#000] relative group"
-            >
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10 mix-blend-multiply"></div>
-              <AlertTriangle className="absolute top-4 right-4 text-black h-12 w-12 animate-pulse" />
-              <div className="bg-white text-black inline-block px-2 font-black uppercase text-xs mb-4 transform -rotate-2">
-                ALERTA DE RH
-              </div>
-              <h3 className="text-2xl font-black uppercase mb-4 pr-12 leading-tight">{abuse.title}</h3>
-              <p className="font-mono text-sm leading-relaxed opacity-90">{abuse.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+                <div className="relative z-10">
+                  <div className="bg-black text-[#00ff00] border border-[#00ff00] inline-block px-3 py-1 font-mono font-bold text-xs mb-4 shadow-[2px_2px_0px_#00ff00]">
+                    FICHA TÉCNICA
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-black uppercase mb-1 leading-none tracking-tight">{member.name}</h3>
+                  <h4 className="text-red-600 font-black uppercase text-xs md:text-sm mb-4 border-b-4 border-black pb-2">{member.role}</h4>
+                  <p className="font-serif leading-relaxed text-sm md:text-base italic text-gray-700">{member.desc}</p>
+                </div>
+
+                <div className="mt-6 flex justify-between items-center border-t-2 border-dashed border-gray-300 pt-4 relative z-10">
+                  <span className="text-xs font-mono text-gray-500 uppercase">STATUS: SOBREVIVENDO</span>
+                  <AlertTriangle size={16} className="text-yellow-500" />
+                </div>
+
+                {/* BOTTOM ACCENT */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00ff00] to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </motion.div>
+            ))}
+
+            {/* ABUSE CARDS */}
+            {content.production.abuse.map((abuse, i) => (
+              <motion.div
+                key={`abuse-${i}`}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03, rotate: 1 }}
+                transition={{ delay: (content.production.team.length + i) * 0.1, type: "spring", stiffness: 300 }}
+                className="bg-red-600 text-white border-4 border-black p-6 md:p-8 shadow-[8px_8px_0px_#000] relative group overflow-hidden"
+              >
+                {/* PATTERN OVERLAY */}
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10 mix-blend-multiply"></div>
+
+                {/* ALERT ICON */}
+                <AlertTriangle className="absolute top-4 right-4 text-black/30 h-10 w-10 md:h-12 md:w-12 animate-pulse" />
+
+                <div className="relative z-10">
+                  <div className="bg-white text-black inline-block px-2 py-1 font-black uppercase text-xs mb-4 transform -rotate-2 shadow-lg">
+                    ⚠️ ALERTA DE RH
+                  </div>
+                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 pr-10 leading-tight">{abuse.title}</h3>
+                  <p className="font-mono text-sm leading-relaxed opacity-90">{abuse.desc}</p>
+                </div>
+
+                {/* BOTTOM ACCENT */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow-400 to-white opacity-50 group-hover:opacity-100 transition-opacity"></div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* PARTNERS - AWWWARDS LEVEL CARDS */}
