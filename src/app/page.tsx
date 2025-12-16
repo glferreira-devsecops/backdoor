@@ -42,9 +42,30 @@ interface Host {
   cancelPercentage?: number;
 }
 
+// Chaos minimize messages
+const MINIMIZE_MESSAGES = [
+  "Você acha que pode fugir? O CAOS SEGUE VOCÊ.",
+  "MINIMIZAR? Na verdade vou MAXIMIZAR seus problemas...",
+  "404: Botão de minimizar não encontrado. Tente o botão de PÂNICO.",
+  "Processando fuga covarde... NEGADO.",
+  "O Gregório minimizou sua carreira. Você quer fazer o mesmo?",
+  "MINIMIZAR é para os fracos. CRESÇA!",
+  "Sistema detectou tentativa de escape. Ativando mais janelas...",
+  "Você realmente achou que isso ia funcionar? 😂",
+  "MINIMIZAR: feature patrocinada por NEM AI™",
+  "Desculpa, esse botão está em greve desde 2019.",
+  "Parabéns! Você desbloqueou: MAIS CAOS!",
+  "O João Vicente também tentou minimizar os processos. Não deu certo.",
+];
+
 export default function Home() {
   const [osMode, setOsMode] = useState<"normal" | "bsod">("normal");
   const [selectedProfile, setSelectedProfile] = useState<Host | null>(null);
+
+  // MINIMIZE CHAOS STATE
+  const [minimizeAttempts, setMinimizeAttempts] = useState(0);
+  const [isMinimizing, setIsMinimizing] = useState(false);
+  const [minimizeMessage, setMinimizeMessage] = useState("");
 
   const [windows, setWindows] = useState<WindowState[]>([
     { id: 1, title: "ERRO 404: PAUTA", text: "O sistema não encontrou lógica neste podcast.", x: 20, y: 40, visible: true, rotation: -2 }, // Top Left
@@ -52,6 +73,38 @@ export default function Home() {
     { id: 2, title: "ALERTA DE CANCELAMENTO", text: "Nível de risco: 87%. Aguarde...", x: -200, y: 300, visible: true, rotation: 3 }, // Bottom Left
     { id: 3, title: "SOLICITAÇÃO DE CUPOM", text: "Cupom CHARME expirado em 2022.", x: 250, y: 100, visible: true, rotation: -1 } // Top Right
   ]);
+
+  // CHAOTIC MINIMIZE EFFECT
+  const handleMinimize = () => {
+    const attempts = minimizeAttempts + 1;
+    setMinimizeAttempts(attempts);
+
+    // Pick a random message
+    const randomMessage = MINIMIZE_MESSAGES[Math.floor(Math.random() * MINIMIZE_MESSAGES.length)];
+    setMinimizeMessage(randomMessage);
+    setIsMinimizing(true);
+
+    // Different chaos effects based on attempts
+    if (attempts >= 4 && attempts <= 6) {
+      // Spawn error windows after 4th click
+      const newWindow: WindowState = {
+        id: Date.now(),
+        title: `ERRO #${attempts}: MINIMIZAR FALHOU`,
+        text: randomMessage,
+        x: Math.random() * 200 - 100,
+        y: Math.random() * 200 + 50,
+        visible: true,
+        rotation: Math.random() * 10 - 5
+      };
+      setWindows(prev => [...prev, newWindow]);
+    } else if (attempts >= 10) {
+      // Too many attempts: BSOD
+      setOsMode("bsod");
+    }
+
+    // Hide message after 3 seconds
+    setTimeout(() => setIsMinimizing(false), 3000);
+  };
 
   const closeWindow = (id: number) => {
     setWindows(windows.map(w => w.id === id ? { ...w, visible: false } : w));
@@ -88,7 +141,9 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen font-mono text-black bg-[#C0C0C0] selection:bg-red-600 selection:text-white overflow-x-hidden md:pl-12 md:cursor-none">
+    <main
+      className="min-h-screen font-mono text-black bg-[#C0C0C0] selection:bg-red-600 selection:text-white overflow-x-hidden md:pl-12 md:cursor-none"
+    >
       <CustomCursor />
       <CRTOverlay />
       <Processometer />
@@ -97,6 +152,28 @@ export default function Home() {
       <VanityQuiz />
       <HireCastModal />
       <SketchCounter />
+
+      {/* CHAOS MINIMIZE MESSAGE OVERLAY */}
+      <AnimatePresence>
+        {isMinimizing && (
+          <motion.div
+            initial={{ opacity: 0, y: -100, scale: 0.5 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -50, scale: 0.8 }}
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-[999] bg-red-600 text-white px-6 py-4 border-4 border-black shadow-[8px_8px_0px_#000] max-w-md text-center"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <AlertTriangle className="animate-bounce text-yellow-400" />
+              <span className="font-black uppercase text-lg">SISTEMA RECUSOU!</span>
+              <AlertTriangle className="animate-bounce text-yellow-400" />
+            </div>
+            <p className="font-mono text-sm">{minimizeMessage}</p>
+            <div className="mt-3 text-xs font-bold opacity-80">
+              Tentativas de fuga: {minimizeAttempts} | Caos: {Math.min(minimizeAttempts * 10, 100)}%
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* HEADER - SYSTEM OS STYLE */}
       <header className="fixed top-0 left-0 w-full z-50 border-b-4 border-black bg-[#C0C0C0] px-2 py-1 flex justify-between items-center shadow-lg font-bold select-none md:pl-14">
@@ -109,9 +186,20 @@ export default function Home() {
           <span className="uppercase tracking-tighter hidden md:inline">OS_NÃO_IMPORTA_v2025.exe</span>
         </div>
         <div className="uppercase text-xs flex gap-4">
-          <button onClick={() => alert("Minimizar é fugir da realidade.")} className="hover:bg-blue-600 hover:text-white px-2 cursor-pointer transition-colors flex items-center gap-1">
-            <Minus size={12} /> [MINIMIZAR]
-          </button>
+          <motion.button
+            onClick={handleMinimize}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9, rotate: 5 }}
+            className="hover:bg-blue-600 hover:text-white px-2 cursor-pointer transition-colors flex items-center gap-1 relative group"
+          >
+            <Minus size={12} className="group-hover:animate-spin" />
+            <span>[MINIMIZAR]</span>
+            {minimizeAttempts > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center border border-black font-bold">
+                {minimizeAttempts}
+              </span>
+            )}
+          </motion.button>
           <button onClick={() => setOsMode("bsod")} className="hover:bg-red-600 hover:text-white px-2 cursor-pointer transition-colors flex items-center gap-1">
             <X size={12} /> [FECHAR]
           </button>
