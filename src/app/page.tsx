@@ -206,23 +206,62 @@ export default function Home() {
       {/* TOPIC GENERATOR - REPLACING MANIFESTO */}
       <TopicGenerator />
 
-      {/* ECOLOGIA DA PRODUÇÃO - HORIZONTAL WITH DRAG */}
-      <section className="py-24 overflow-hidden bg-white border-y-8 border-black relative">
+      {/* ECOLOGIA DA PRODUÇÃO - VERTICAL ON MOBILE, HORIZONTAL DRAG ON DESKTOP */}
+      <section className="py-16 md:py-24 overflow-x-auto bg-white border-y-8 border-black relative">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-10 pointer-events-none"></div>
-        <div className="container px-4 mb-12 relative z-10">
-          <h2 className="text-5xl md:text-7xl font-black uppercase flex items-center gap-4 tracking-tighter">
-            <Zap className="fill-yellow-400 text-black h-12 w-12 md:h-16 md:w-16 animate-pulse" />
+        <div className="container px-4 mb-8 md:mb-12 relative z-10">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase flex items-center gap-2 md:gap-4 tracking-tighter">
+            <Zap className="fill-yellow-400 text-black h-8 w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 animate-pulse" />
             Ecologia da Várzea
           </h2>
-          <p className="font-bold font-mono mt-4 bg-black text-white inline-block px-4 py-1 skew-x-[-10deg]">
-            BASTIDORES DO CAOS &rarr; ARRASTE COM ÓDIO
+          <p className="font-bold font-mono mt-4 bg-black text-white inline-block px-4 py-1 skew-x-[-10deg] text-sm md:text-base">
+            BASTIDORES DO CAOS &rarr; <span className="hidden md:inline">ARRASTE COM ÓDIO</span><span className="md:hidden">ROLE PARA VER</span>
           </p>
         </div>
 
+        {/* MOBILE: Vertical Grid | DESKTOP: Horizontal Drag */}
+        <div className="md:hidden container px-4 space-y-6">
+          {/* TEAM CARDS - MOBILE VERTICAL */}
+          {content.production.team.map((member, i) => (
+            <div
+              key={i}
+              className="bg-gray-100 border-4 border-black p-6 shadow-[8px_8px_0px_#000] relative overflow-hidden"
+            >
+              <div className="bg-black text-[#00ff00] border border-[#00ff00] inline-block px-3 py-1 font-mono font-bold text-xs mb-4 shadow-[2px_2px_0px_#00ff00]">
+                FICHA TÉCNICA #{i + 1}
+              </div>
+              <h3 className="text-2xl font-black uppercase mb-1 leading-none tracking-tight">{member.name}</h3>
+              <h4 className="text-red-600 font-black uppercase text-sm mb-4 border-b-4 border-black pb-2">{member.role}</h4>
+              <p className="font-serif leading-tight text-base italic border-l-4 border-gray-300 pl-4">{member.desc}</p>
+              <div className="mt-4 flex justify-between items-center border-t-2 border-dashed border-gray-400 pt-4">
+                <span className="text-xs font-mono text-gray-500 uppercase">STATUS: SOBREVIVENDO</span>
+                <AlertTriangle size={16} className="text-yellow-500" />
+              </div>
+            </div>
+          ))}
+
+          {/* ABUSES CARDS - MOBILE VERTICAL */}
+          {content.production.abuse.map((abuse, i) => (
+            <div
+              key={`abuse-${i}`}
+              className="bg-red-600 text-white border-4 border-black p-6 shadow-[8px_8px_0px_#000] relative"
+            >
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-10 mix-blend-multiply"></div>
+              <AlertTriangle className="absolute top-4 right-4 text-black h-8 w-8 animate-pulse" />
+              <div className="bg-white text-black inline-block px-2 font-black uppercase text-xs mb-4 transform -rotate-2">
+                ALERTA DE RH
+              </div>
+              <h3 className="text-xl font-black uppercase mb-4 pr-10 leading-tight">{abuse.title}</h3>
+              <p className="font-mono text-sm leading-relaxed opacity-90">{abuse.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* DESKTOP: Horizontal Drag */}
         <motion.div
-          className="flex gap-8 px-8 cursor-grab active:cursor-grabbing w-fit"
+          className="hidden md:flex gap-8 px-8 cursor-grab active:cursor-grabbing w-fit"
           drag="x"
-          dragConstraints={{ right: 0, left: -1000 }} // Adjust based on content width
+          dragConstraints={{ right: 0, left: -2000 }}
           dragElastic={0.2}
           dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
         >
